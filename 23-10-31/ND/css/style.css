@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#heading {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#heading :nth-child(1) {
+  flex: 10px;
+}
+
+#heading :nth-child(2) {
+  flex: 10px;
+  color: gray;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+#pagr {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: fit-content;
+}
+
+#pagr td {
+  border: 1px solid black;
+  vertical-align: top;
+  height: fit-content;
+}
+
+.men td {
+  border: none !important;
+  text-align: center;
+  padding: 5px;
+}
+
+.men tr :nth-child(1) {
+  color: red;
+}
+
+.men th {
+  color: black !important;
+}
+
+.red {
+  color: red;
+}
