@@ -54,6 +54,7 @@
 }
 
 .card {
+  margin-top: 30px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 }
@@ -67,11 +68,10 @@
 }
 
 #firstcard {
-  margin-bottom: 10px;
+  margin-bottom: 45px;
   padding: 20px;
   background-color: #f4f1db;
   width: 100%;
-  height: 300px;
   min-height: fit-content;
   display: flex;
   flex-direction: column;
@@ -84,12 +84,17 @@ img {
 }
 
 #secondcard {
-  margin-bottom: 10px;
+  margin-bottom: 45px;
   padding: 20px;
-  background-color: #f4f1db;
+  background-color: #edf4db;
   width: 100%;
-  height: 300px;
   min-height: fit-content;
   display: flex;
   flex-direction: column;
+}
+
+#footer {
+  height: 100px;
+  width: 100%;
+  background-color: rgb(189, 189, 189);
 }
