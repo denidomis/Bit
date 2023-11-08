@@ -44,7 +44,7 @@
 }
 
 #content {
-  margin: 10px;
+  margin: 5%;
   padding: 40px;
   margin-top: 180px;
   display: flex;
@@ -54,7 +54,7 @@
 }
 
 .card {
-  margin-top: 30px;
+  margin-top: 5%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 }
@@ -68,7 +68,7 @@
 }
 
 #firstcard {
-  margin-bottom: 45px;
+  margin-bottom: 7%;
   padding: 20px;
   background-color: #f4f1db;
   width: 100%;
@@ -84,7 +84,7 @@ img {
 }
 
 #secondcard {
-  margin-bottom: 45px;
+  margin-bottom: 7%;
   padding: 20px;
   background-color: #edf4db;
   width: 100%;
