@@ -4,75 +4,109 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        background: url(images/bg.png) no-repeat center center;
-      }
-
-      .contact {
-        position: relative;
-        background-color: white;
-        max-width: 1440px;
-        width: 100%;
-        margin: 100px auto;
-        border-radius: 40px;
-        height: 600px;
-        padding: 30px 50px;
-        overflow: hidden;
-      }
-
-      .contact::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        background-color: #6de1c2;
-        height: 100%;
-        width: 419px;
-        border-top-right-radius: 40px;
-        border-bottom-right-radius: 40px;
-      }
-
-      .contact-inner {
-        height: 550px;
-        display: flex;
-        position: relative;
-        z-index: 1;
-      }
-
-      .left {
-        background-color: aquamarine;
-        width: 50%;
-        height: 100%;
-      }
-
-      .right {
-        background-color: purple;
-        width: 50%;
-        height: 100%;
-      }
-
-      @media screen and (max-width: 768px) {
-        .contact-inner {
-          flex-direction: column;
-        }
-        .left,
-        .right {
-          width: 100%;
-        }
-      }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="contact-form.css" />
   </head>
   <body>
     <div class="contact">
       <div class="contact-inner">
-        <div class="left"></div>
-        <div class="right"></div>
+        <div class="left">
+          <div class="row1">
+            <h3>Get in <span class="touch">touch</span></h3>
+          </div>
+          <div class="row2">
+            <p>
+              Enim tempor eget pharetra facilisis sed maecenas adipiscing. Eu
+              leo molestie vel, ornare non id blandit netus.
+            </p>
+          </div>
+          <div class="row3">
+            <input type="text" placeholder="First name" />
+            <input type="text" placeholder="Street" />
+            <input type="text" placeholder="City" />
+            <input type="text" placeholder="Post Code" />
+            <input type="number" placeholder="Contact Phone" />
+            <input type="email" placeholder="email@gmail.com" />
+            <input type="text" placeholder="Let’s talk about your idea" />
+          </div>
+          <div class="row4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="10"
+              height="10"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15"
+                stroke="#737B7D"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M17 8L12 3L7 8"
+                stroke="#737B7D"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M12 3V15"
+                stroke="#737B7D"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <label for="imageUpload">Upload Additional file</label>
+            <input type="file" id="imageUpload" />
+          </div>
+          <div class="row5">
+            <p>
+              Attach file. File size of your documents should not exceed 10MB
+            </p>
+          </div>
+          <div class="row6">
+            <label
+              ><input type="checkbox" />I want to protect my data by signing an
+              NDA</label
+            >
+            <button type="submit">Submit</button>
+          </div>
+          <div class="row7">
+            <div class="phone">
+              <img src="images/Frame 831.svg" alt="Icon Description" />
+              <div class="phone-nr">
+                <h5>Phone</h5>
+                <p>111 111 111</p>
+              </div>
+            </div>
+            <div class="phone">
+              <img src="images/Frame 833.png" alt="Icon Description" />
+              <div class="phone-nr">
+                <h5>E-MAIL</h5>
+                <p>info@company.com</p>
+              </div>
+            </div>
+            <div class="phone">
+              <img src="images/Frame 833.png" alt="Icon Description" />
+              <div class="phone-nr">
+                <h5>HELPDESK</h5>
+                <p>https://helpdesk.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <img src="images/Slice 3 (1) 1.png" alt="" />
+        </div>
       </div>
     </div>
   </body>
