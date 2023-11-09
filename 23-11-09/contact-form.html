@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: url(images/bg.png) no-repeat center center;
+      }
+
+      .contact {
+        position: relative;
+        background-color: white;
+        max-width: 1440px;
+        width: 100%;
+        margin: 100px auto;
+        border-radius: 40px;
+        height: 600px;
+        padding: 30px 50px;
+        overflow: hidden;
+      }
+
+      .contact::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #6de1c2;
+        height: 100%;
+        width: 419px;
+        border-top-right-radius: 40px;
+        border-bottom-right-radius: 40px;
+      }
+
+      .contact-inner {
+        height: 550px;
+        display: flex;
+        position: relative;
+        z-index: 1;
+      }
+
+      .left {
+        background-color: aquamarine;
+        width: 50%;
+        height: 100%;
+      }
+
+      .right {
+        background-color: purple;
+        width: 50%;
+        height: 100%;
+      }
+
+      @media screen and (max-width: 768px) {
+        .contact-inner {
+          flex-direction: column;
+        }
+        .left,
+        .right {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contact">
+      <div class="contact-inner">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+    </div>
+  </body>
+</html>

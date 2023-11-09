@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms</title>
+    <style>
+      label {
+        display: block;
+      }
+      input {
+        width: 100%;
+        border: 1px solid rgb(202, 202, 202);
+      }
+
+      /* Filter by atribute */
+      input[type="checkbox"],
+      input[type="radio"] {
+        width: auto;
+      }
+
+      select {
+        width: 100%;
+      }
+
+      .flex {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="">
+      <label>Name:</label>
+      <input type="text" placeholder="Vardenis Pavardenis" required />
+      <label>Age:</label>
+      <input type="number" placeholder="Kiekis" min="1" max="50" required />
+      <label>Email:</label>
+      <input
+        type="email"
+        placeholder="email@gmail.com"
+        value="dode@gmail.com"
+        required
+      />
+      <label>Password:</label>
+      <input type="password" />
+      <label>Select color:</label>
+      <input type="color" />
+      <label>Select fixed color:</label>
+      <input type="color" list="spalvos" />
+      <datalist id="spalvos">
+        <option value="#FFFFFF">Balta</option>
+        <option value="#000000">Balta</option>
+        <option value="#CCCCCC">Balta</option>
+      </datalist>
+      <label>Date:</label>
+      <input type="date" />
+      <label>Date and time:</label>
+      <input type="datetime-local" />
+      <label>File:</label>
+      <input type="file" />
+      <label>Files:</label>
+      <input type="file" multiple />
+
+      <h3>Checkboxes</h3>
+
+      <label>
+        <input type="checkbox" />
+        I agree with tems and conditions
+      </label>
+      <div class="flex">
+        <input type="checkbox" id="newsletters" />
+        <label for="newsletters">Want to get news</label>
+      </div>
+      <h3>Radio</h3>
+      <label
+        ><input type="radio" name="features" />
+        <span>feature1</span>
+      </label>
+      <label
+        ><input type="radio" name="features" />
+        <span>feature2</span>
+      </label>
+      <label
+        ><input type="radio" name="features" />
+        <span>feature3</span>
+      </label>
+      <h3>Select</h3>
+      <select>
+        <option>feature1</option>
+        <option>feature2</option>
+        <option>feature3</option>
+      </select>
+      <button>Send</button>
+    </form>
+  </body>
+</html>

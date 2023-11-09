@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+      }
+
+      .red {
+        background-color: red;
+      }
+
+      .purple {
+        background-color: purple;
+      }
+
+      @media screen and (max-width: 768px) {
+        .red {
+          background-color: blue;
+        }
+      }
+
+      @media screen and (min-width: 768px) {
+        .purple {
+          background-color: aqua;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box red"></div>
+    <div class="box purple"></div>
+  </body>
+</html>
