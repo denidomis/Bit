@@ -10,6 +10,7 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   margin: 0;
+  padding: 5%;
 }
 
 .form {
@@ -17,10 +18,11 @@ body {
   height: 80%;
   background: white;
   box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.158);
-  padding-left: 3%;
-  padding-right: 3%;
-  margin-left: 10%;
-  margin-right: 10%;
+  padding: 3%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 header {
@@ -93,6 +95,17 @@ main {
   font-style: normal;
   font-weight: 500;
   line-height: 24px; /* 150% */
+}
+
+.shoe {
+  width: fit-content;
+  margin-right: 5%;
+}
+
+.shoe img {
+  width: 120%;
+  height: 100%;
+  position: relative;
 }
 
 footer {
