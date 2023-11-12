@@ -1,2 +1,14 @@
 .vscode/settings.json
 .vscode
+.parcel-cache/8a85f3c048984d0a.txt
+.parcel-cache/9410011b69fc981c
+.parcel-cache/b6d8b3cdc0a198e2
+.parcel-cache/b8f03e3f6bb18f21
+.parcel-cache/data.mdb
+.parcel-cache/lock.mdb
+
+package.json
+package-lock.json
+
+node_modules
+dist
