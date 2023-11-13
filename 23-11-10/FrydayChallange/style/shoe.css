@@ -16,6 +16,7 @@ body {
   width: fit-content;
   height: 80%;
   background: white;
+  border: 1px solid yellow;
   box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.158);
   padding: 3%;
   box-sizing: border-box;
@@ -124,5 +125,11 @@ footer {
     font-size: 35px;
     font-style: normal;
     font-weight: 500;
+  }
+  .header1 {
+    padding-top: 3%;
+    width: 45%;
+    display: flex;
+    flex-wrap: wrap;
   }
 }
