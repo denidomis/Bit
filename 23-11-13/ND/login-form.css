@@ -2,15 +2,23 @@
   margin: 0;
 }
 
-body {
+html {
+  height: 100%;
   display: flex;
-  height: 100vh;
+}
+
+body {
+  flex-grow: 1;
+  display: flex;
 }
 
 .left {
-  width: 50%;
+  width: 40%;
   height: 100%;
   background: url(images/left.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +41,8 @@ body {
 }
 
 .right {
-  width: 50%;
+  padding-left: 10%;
+  width: 60%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -43,8 +52,46 @@ body {
 
 .right-main {
   height: 40%;
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+}
+
+.right-linkbtns {
+  gap: 5%;
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  border: none;
+  border-radius: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.google-signin {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
+  background: rgba(66, 133, 244, 1);
+  color: #fff;
+  padding: 1%;
+}
+
+.google-signin svg {
+  display: flex;
+  justify-self: left;
+}
+
+.riht-input {
+  height: 10%;
+}
+
+input {
+  height: 80%;
+  width: 50%;
+  border: 1px solid gainsboro;
 }
