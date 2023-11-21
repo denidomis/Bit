@@ -1,0 +1,91 @@
+@font-face {
+  font-family: "CircularSTD";
+  src: url("../fonts/circularstd-book-webfont.woff") format("woff");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "CircularSTD";
+  src: url("../fonts/circularstd-bold-webfont.woff") format("woff");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "CircularSTD";
+  src: url("../fonts/circularstd-black-webfont.woff") format("woff");
+  font-weight: 800;
+}
+
+:root {
+  --bs-border-radius: 1.5rem;
+}
+
+body {
+  font-family: "CircularSTD";
+}
+
+header {
+  padding: 2.25rem 0;
+}
+
+nav.navbar {
+  font-size: 14px;
+}
+
+nav.navbar a {
+  color: #19182588;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+nav.navbar li.active a {
+  color: #222831;
+}
+
+.btn {
+  --bs-btn-padding-y: 0.9rem;
+  --bs-btn-padding-x: 2rem;
+  font-weight: 600;
+}
+
+.btn-primary {
+  --bs-btn-bg: #5d50c6;
+  --bs-btn-hover-bg: #5245b0;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  color: #eeeeee;
+}
+
+.btn-shadow {
+  box-shadow: 0 15px 15px 0 #00000012;
+  --bs-btn-color: #f85e9f;
+  font-size: 14px;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-shadow::after {
+  content: "";
+  background: url("assets/icons/1.svg");
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.home h2 {
+  font-size: 69px;
+  font-weight: 600;
+  line-height: 120%;
+}
+
+.home h2 span {
+  color: #f85e9f;
+}
+
+.home p {
+  font-family: Inter;
+  font-size: 18px;
+  color: #19182580;
+}
