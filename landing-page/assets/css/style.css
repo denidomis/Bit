@@ -21,13 +21,15 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
   font-family: "CircularSTD";
 }
 
+img {
+  max-width: 100%;
+}
+
 header {
-  padding: 1.5rem 0;
+  padding: 2.25rem 0;
 }
 
 nav.navbar {
@@ -57,6 +59,9 @@ nav.navbar li.active a {
   font-weight: 600;
   font-size: 14px;
   color: #eeeeee;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-shadow {
@@ -70,7 +75,7 @@ nav.navbar li.active a {
 
 .btn-shadow::after {
   content: "";
-  background: url("assets/icons/1.svg");
+  background: url("../icons/1.svg");
   width: 24px;
   height: 24px;
   display: block;
@@ -92,6 +97,31 @@ nav.navbar li.active a {
   color: #19182580;
 }
 
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-outline-primary {
+  --bs-btn-border-color: #eeeeee;
+  --bs-btn-color: #222831;
+  --bs-btn-hover-color: #222831;
+  --bs-btn-hover-bg: #eeeeee;
+  --bs-btn-hover-border-color: #eeeeee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-outline-primary::before {
+  content: "";
+  background: url(../icons/2.svg) no-repeat center center;
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
 .hamburger {
   border: none;
   width: 48px;
@@ -99,7 +129,7 @@ nav.navbar li.active a {
   background: url(../icons/14.svg) no-repeat center center;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (min-width: 992px) {
   nav.navbar {
     display: block;
   }
@@ -113,10 +143,10 @@ nav.navbar li.active a {
     font-size: 18px;
     background: white;
     padding: 1rem;
-    z-index: 100;
+    z-index: 1000;
     height: 100vh;
     width: 280px;
-    border-right: 1px solid rgb(153, 153, 153);
+    border-right: 1px solid rgb(153 153 153);
     transition: left 0.5s ease-in-out;
   }
 
@@ -125,18 +155,24 @@ nav.navbar li.active a {
     position: fixed;
     top: 0;
     left: -100vw;
-    background-color: rgba(0, 0, 0, 0.055);
+    background-color: rgba(0, 0, 0, 0.3);
     width: calc(100vw - 280px);
     height: 100vh;
     transition: left 0.5s ease-in-out;
   }
 
-  input[name="nav-toggle"]:checked + nav {
+  input[name="nav-toggler"]:checked + nav {
     display: block;
     left: 0;
   }
 
-  input[name="nav-toggle"]:checked + nav::after {
+  input[name="nav-toggler"]:checked + nav::after {
     left: 280px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  section.home h2 {
+    font-size: 40px;
   }
 }

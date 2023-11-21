@@ -20,27 +20,29 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link href="assets/css/style.css" rel="stylesheet" />
   </head>
   <body>
     <header>
-      <div class="container d-flex justify-content-between align-items-center">
+      <div
+        class="container-lg d-flex justify-content-between align-items-center flex-row-reverse flex-md-row"
+      >
         <div class="d-block d-lg-none menu">
-          <label class="hamburger" for="nav-toggle"></label>
+          <label class="hamburger" for="nav-toggler"></label>
         </div>
         <div class="logo">
           <img src="assets/images/logo.png" alt="Logotipas" />
         </div>
         <input
           type="checkbox"
-          id="nav-toggle"
-          name="nav-toggle"
+          id="nav-toggler"
+          name="nav-toggler"
           class="d-none"
         />
         <nav class="navbar navbar-expand">
           <label
             class="close-offcanvas fs-1 position-absolute top-0 d-lg-none"
-            for="nav-toggle"
+            for="nav-toggler"
             style="right: 1rem"
           >
             <i class="bi bi-x"></i>
@@ -52,7 +54,7 @@
             <li><a href="#">Contact</a></li>
           </ul>
         </nav>
-        <ul class="navbar-nav flex-row">
+        <ul class="navbar-nav flex-row d-none d-md-flex">
           <li><a href="#" class="btn btn-empty">Log in</a></li>
           <li><a href="#" class="btn btn-primary">Sign Up</a></li>
         </ul>
@@ -60,29 +62,33 @@
     </header>
     <main>
       <section class="home">
-        <div class="container">
-          <div class="row d-flex flex-sm-wrap-reverse">
-            <div class="col-12 col-lg-4 pt-5">
+        <div class="container-lg">
+          <div class="row flex-wrap-reverse flex-lg-wrap">
+            <div
+              class="col-lg-5 col-xl-4 col-12 pt-5 text-center text-lg-start"
+            >
               <div class="link">
                 <a href="#" class="btn btn-shadow">Explore the world!</a>
               </div>
-              <h2 class="mt-5">
+              <h2 class="mt-md-5 mt-4">
                 Travel <span>top destination</span> of the world
               </h2>
-              <p class="mt-5">
+              <p class="mt-md-5 mt-4">
                 We always make our customer happy by providing as many choices
                 as possible
               </p>
-              <div class="buttons mt-5">
+              <div
+                class="buttons mt-4 mt-md-5 justify-content-center justify-content-lg-start flex-md-row flex-column"
+              >
                 <a href="#" class="btn btn-primary">Get Started</a>
                 <a href="#" class="btn btn-outline-primary">Watch Demo</a>
               </div>
             </div>
-            <div class="col-12 col-lg-8">
+            <div class="col-lg-7 col-xl-8 col-12">
               <img
                 src="assets/images/home.png"
-                style="max-width: 100%"
                 alt=""
+                style="margin-bottom: -15%"
               />
             </div>
           </div>
