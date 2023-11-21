@@ -21,11 +21,13 @@
 }
 
 body {
+  margin: 0;
+  padding: 0;
   font-family: "CircularSTD";
 }
 
 header {
-  padding: 2.25rem 0;
+  padding: 1.5rem 0;
 }
 
 nav.navbar {
@@ -88,4 +90,53 @@ nav.navbar li.active a {
   font-family: Inter;
   font-size: 18px;
   color: #19182580;
+}
+
+.hamburger {
+  border: none;
+  width: 48px;
+  height: 49px;
+  background: url(../icons/14.svg) no-repeat center center;
+}
+
+@media screen and (max-width: 992px) {
+  nav.navbar {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  nav.navbar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    font-size: 18px;
+    background: white;
+    padding: 1rem;
+    z-index: 100;
+    height: 100vh;
+    width: 280px;
+    border-right: 1px solid rgb(153, 153, 153);
+    transition: left 0.5s ease-in-out;
+  }
+
+  nav.navbar::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: -100vw;
+    background-color: rgba(0, 0, 0, 0.055);
+    width: calc(100vw - 280px);
+    height: 100vh;
+    transition: left 0.5s ease-in-out;
+  }
+
+  input[name="nav-toggle"]:checked + nav {
+    display: block;
+    left: 0;
+  }
+
+  input[name="nav-toggle"]:checked + nav::after {
+    left: 280px;
+  }
 }
