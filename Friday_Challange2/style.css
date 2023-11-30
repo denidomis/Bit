@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.heads {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.head1 {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-align: center;
+  color: white;
+  width: 100%;
+  background-color: rgba(96, 38, 127, 1);
+}
+
+.head2 {
+  display: flex;
+  justify-content: space-around;
+}
+
+.headright {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerlist ul {
+  display: flex;
+  list-style-type: none;
+  margin-top: 1rem;
+}
+.headerlist li {
+  padding-left: 5px;
+}
+.headerlist a {
+  color: #2b0236;
+  text-decoration: none;
+}
