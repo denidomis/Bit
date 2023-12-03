@@ -1,0 +1,471 @@
+.top {
+  background: #60267f;
+  text-align: center;
+  color: white;
+  font-family: DM sans;
+  font-size: 6px;
+  font-weight: bold;
+  padding: 0.2rem;
+}
+
+header {
+  padding: 1.5rem 2rem 1rem 2rem;
+  box-shadow: 0 1px 5px 0 rgba(135, 128, 128, 0.323);
+}
+
+header h2 {
+  font-family: Comfortaa;
+  color: #9a54bc;
+  font-weight: 500;
+  padding-left: 2rem;
+}
+
+header li {
+  list-style: none;
+  color: #2b0236;
+  font-weight: 600;
+}
+
+header li a {
+  text-decoration: none;
+  color: #2b0236;
+}
+
+header li button {
+  background-color: white;
+  border: 2px solid #9a54bc;
+  color: #9a54bc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-radius: 0.3rem;
+  font-family: roboto;
+  font-weight: 600;
+}
+
+.header-section {
+  margin-top: 4rem;
+}
+
+.header-section h3 {
+  width: 60%;
+  font-family: roboto;
+  font-weight: 500;
+  color: #2b0236;
+}
+
+.header-section button {
+  background-color: #9a54bc;
+  border: none;
+  color: white;
+  font-family: roboto;
+  font-weight: 600;
+  padding: 0.8rem 1.5rem 0.8rem 1.5rem;
+  border-radius: 0.3rem;
+  margin-top: 2rem;
+}
+
+.circle {
+  background: #f5e1ff52;
+  width: 399px;
+  height: 399px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+.circle2 {
+  background: #f5e1ffd3;
+  width: 236px;
+  height: 236px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  top: 26rem;
+}
+
+.boxText {
+  background: white;
+  border: 2px solid #9a54bc;
+  border-radius: 0.5rem;
+  width: 121px;
+  height: 236px;
+  z-index: 2;
+  position: absolute;
+  top: 27rem;
+  font-family: Comfortaa;
+  color: #9a54bc;
+  font-weight: 500;
+  font-size: 27px;
+}
+
+.header-section .button {
+  position: absolute;
+  top: 42rem;
+  z-index: 3;
+  background: white;
+  border: 2px solid #9a54bc;
+  color: #9a54bc;
+}
+
+.logos h3 {
+  font-family: roboto;
+  font-size: 31px;
+  font-weight: 500;
+  margin-top: 4rem;
+}
+
+.logoRow {
+  gap: 5rem;
+}
+
+.collab h3 {
+  font-family: roboto;
+  font-size: 31px;
+  margin-top: 6rem;
+}
+
+.box {
+  background: white;
+  box-shadow: 0 10px 15px 2px rgba(128, 128, 128, 0.138);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.box button {
+  background: white;
+  border: none;
+  width: 100%;
+  font-family: roboto;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+}
+
+.box button:hover {
+  background: #60267f;
+  border: 2px solid #9a54bc;
+  padding: 0.5rem;
+  color: white;
+}
+
+.phone {
+  background: url(../images/Rectangle.svg) no-repeat center center / cover;
+  background-size: contain;
+  height: 700px;
+}
+
+.textBox {
+  padding: 2rem 3rem 2rem 3rem;
+  background: #f2f2f2;
+  margin-top: 2rem;
+  font-family: roboto;
+  font-weight: 300;
+}
+
+.textBox span {
+  font-weight: 600;
+}
+
+.textBox > .seeMore {
+  font-weight: 400;
+}
+
+.textBoxSecond h3 {
+  font-size: 31px;
+  font-family: roboto;
+  font-weight: 500;
+  margin-top: 3rem;
+}
+
+.textBoxSecond p {
+  font-family: 16px;
+  font-family: roboto;
+  font-weight: 400;
+  width: 70%;
+}
+
+.videoImage {
+  background: url(../images/video.svg) no-repeat center center / cover;
+  width: 75%;
+  height: 400px;
+  position: relative;
+}
+
+.playButton {
+  background: url(../icons/PlayCircle.png) no-repeat;
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  top: 50%;
+  left: 45%;
+}
+
+.collabSecond {
+  margin-top: 5rem;
+  font-size: 31px;
+  font-family: roboto;
+  font-weight: 500;
+}
+
+.imagesSize img {
+  width: 100%;
+  height: 200px;
+}
+
+.imagesSize h4 {
+  color: #60267f;
+  font-size: 16px;
+  font-family: roboto;
+  font-weight: 500;
+  margin: 1rem 0 0 1rem;
+}
+
+.imagesSize p {
+  font-size: 16px;
+  font-family: roboto;
+  font-weight: 500;
+  margin: 0.2rem 0 0 1rem;
+}
+
+.designBackground {
+  background: #e2bdf21f no-repeat center center / cover;
+  padding: 12rem 2rem 0rem 2rem;
+}
+
+.content h3 {
+  font-size: 31px;
+  font-family: roboto;
+  font-weight: 500;
+}
+
+.content p {
+  color: #a79d9d;
+  font-size: 14px;
+  font-family: roboto;
+  font-weight: 400;
+}
+
+.discount p:nth-child(2) {
+  color: #2b0236;
+  font-size: 14px;
+  font-family: roboto;
+  font-weight: 500;
+}
+
+.card h2 {
+  font-size: 22px;
+  font-family: roboto;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+.card h3 {
+  font-size: 33px;
+  font-family: roboto;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.card button {
+  border: 2px solid #2b0236;
+  background: white;
+  color: #2b0236;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 1rem 0 1rem 0;
+  border-radius: 0.3rem;
+}
+
+.card p {
+  color: #000000c0;
+  font-size: 14px;
+  font-family: roboto;
+  font-weight: 400;
+  margin-top: 7rem;
+}
+
+.card ul {
+  list-style: none;
+  margin-top: 2rem;
+  padding: 0;
+}
+
+.card li:before {
+  content: "\F231";
+  font-family: bootstrap-icons;
+  padding-right: 1rem;
+}
+
+.card {
+  background: transparent !important;
+}
+
+.cardGreen {
+  background: #56e6a5 !important;
+}
+
+.cardGreen button {
+  margin-top: 3rem;
+}
+
+.cardGreen h3 {
+  width: 50%;
+}
+
+.review {
+  font-family: roboto;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.joinUs button {
+  background-color: #9a54bc;
+  border: none;
+  color: white;
+  font-family: roboto;
+  font-weight: 600;
+  padding: 0.8rem 1.5rem 0.8rem 1.5rem;
+  border-radius: 0.3rem;
+}
+
+.joinUs h3 {
+  font-family: roboto;
+  font-size: 31px;
+  font-weight: 400;
+}
+
+.joinUs p {
+  font-family: roboto;
+  font-size: 16px;
+}
+
+.line {
+  background: url(../images/line.svg) no-repeat center;
+  width: 632px;
+  height: 158px;
+  position: absolute;
+  margin-top: 8rem;
+}
+
+.face1 {
+  background: url(../images/face1.png) no-repeat center center / cover;
+  width: 60px;
+  height: 60px;
+  margin-top: -2rem;
+  margin-left: -2rem;
+}
+.face2 {
+  background: url(../images/face2.png) no-repeat center center / cover;
+  width: 60px;
+  height: 60px;
+  margin-top: 2.5rem;
+  margin-left: 2.5rem;
+  position: absolute;
+}
+.face3 {
+  background: url(../images/face3.png) no-repeat center center / cover;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  margin-top: 2rem;
+  margin-left: 10rem;
+}
+.face4 {
+  background: url(../images/face4.png) no-repeat center center / cover;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  margin-top: 5rem;
+  margin-left: 15rem;
+}
+.face5 {
+  background: url(../images/face5.png) no-repeat center center / cover;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  margin-top: 5.5rem;
+  margin-left: 22rem;
+}
+.face6 {
+  background: url(../images/face6.png) no-repeat center center / cover;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  margin-top: 4.5rem;
+  margin-left: 28rem;
+}
+.face7 {
+  background: url(../images/face7.png) no-repeat center center / cover;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  margin-top: 5rem;
+  margin-left: 34rem;
+}
+.face8 {
+  background: url(../images/face8.png) no-repeat center center / cover;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  margin-top: 1rem;
+  margin-left: 37.5rem;
+}
+.you {
+  background: url(../images/You_.png) no-repeat center center;
+  width: 50px;
+  height: 20px;
+  position: absolute;
+  margin-left: 32.5rem;
+  margin-top: 0.4rem;
+}
+
+.purple {
+  background: #9a54bc;
+  padding: 8rem;
+}
+
+.purple h1 {
+  font-family: roboto;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+}
+
+.margin {
+  margin-top: 18rem;
+}
+
+.purple button {
+  border: 2px solid white;
+  background: transparent;
+  padding: 0.7rem 1.3rem 0.7rem 1.3rem;
+  border-radius: 0.3rem;
+  font-family: roboto;
+  font-weight: 600;
+  color: white;
+}
+
+.purple button:hover {
+  background: white;
+  color: #9a54bc;
+}
+
+.questionText h4 {
+  font-family: roboto;
+  font-weight: 500;
+}
+
+.questionText p {
+  font-family: roboto;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.questions {
+  background: #e2bdf223;
+}
