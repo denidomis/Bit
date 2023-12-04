@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox Example</title>
+</head>
+<body>
+
+  <label for="myCheckbox">Check me:</label>
+  <input type="checkbox" id="myCheckbox">
+
+  <button onclick="checkCheckbox()">Check Checkbox</button>
+
+  <script>
+    function checkCheckbox() {
+      // Get the checkbox element by its id
+      let checkboxElement = document.getElementById("myCheckbox");
+
+      // Check if the checkbox is checked
+      let isChecked = checkboxElement.checked;
+
+      // Display the result in an alert
+      if (isChecked) {
+        alert("Checkbox is checked!");
+      } else {
+        alert("Checkbox is not checked.");
+      }
+    }
+  </script>
+
+</body>
+</html>

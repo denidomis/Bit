@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .questions {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="questions">
+      <p>Question: What is the capital of France?</p>
+
+      <input type="checkbox" />
+      <label>A) Berlin</label>
+      <input type="checkbox" />
+      <label>B) London</label>
+      <input type="checkbox" id="answer1" />
+      <label for="answer1">C) Paris</label>
+      <p>Question: How many continents are there on Earth?</p>
+      <input type="checkbox" />
+      <label>A) 5</label>
+      <input type="checkbox" id="answer2" />
+      <label for="answer2">B) 7</label>
+      <input type="checkbox" />
+      <label>C) 6</label>
+      <p>Question: Which planet is known as the Red Planet?</p>
+      <input type="checkbox" id="answer3" />
+      <label for="answer3">A) Mars</label>
+      <input type="checkbox" />
+      <label>B) Jupiter</label>
+      <input type="checkbox" />
+      <label>C) Saturn</label>
+      <p>
+        Question: What gas do plants breathe in that humans and animals breathe
+        out?
+      </p>
+      <input type="checkbox" />
+      <label>A) Oxygen</label>
+      <input type="checkbox" id="answer4" />
+      <label for="answer4">B) Carbon Dioxide</label>
+      <input type="checkbox" />
+      <label>C) Nitrogen</label>
+      <p>Question: What is the largest mammal in the world?</p>
+      <input type="checkbox" />
+      <label>A) Elephant</label>
+      <input type="checkbox" id="answer5" />
+      <label for="answer5">B) Blue Whale</label>
+      <input type="checkbox" />
+      <label>C) Giraffe</label>
+      <button onclick="testAnswer()">Pateikti atsakymą</button>
+      <p id="rez">-------</p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
