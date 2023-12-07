@@ -1,0 +1,40 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 25rem;
+  height: 12rem;
+  background-color: bisque;
+  padding: 1rem;
+  text-align: center;
+}
+
+span {
+  font-size: 2rem;
+}
+
+.buttons {
+  margin-top: 2rem;
+}
+
+button {
+  margin: 5px;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.subtract {
+  background-color: red;
+  color: #fff;
+}
+
+.add {
+  background-color: green;
+  color: #fff;
+}
