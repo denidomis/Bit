@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Slime",
+    "level": 1,
+    "health": 15,
+    "timer": 30
+  },
+  {
+    "name": "Goblin",
+    "level": 3,
+    "health": 25,
+    "timer": 25
+  },
+  {
+    "name": "Skeleton",
+    "level": 5,
+    "health": 35,
+    "timer": 20
+  },
+  {
+    "name": "Orc",
+    "level": 7,
+    "health": 45,
+    "timer": 15
+  },
+  {
+    "name": "Dragon",
+    "level": 10,
+    "health": 100,
+    "timer": 10
+  }
+]
