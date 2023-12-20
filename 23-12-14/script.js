@@ -484,11 +484,11 @@ for (let product of products) {
       <div class="col-3 d-flex justify-content-center align-items-center">
         <img src="${product.thumbnail}" style="width: 90%; height: 12rem;">
       </div>
-      <div class="col-6">
+      <div class="col-lg-6 col-md-5 col-sm-4">
       <p class="category mt-1">Category: ${product.category}</p>
       <a href="#">${product.title}</a>
       <p class="brand">${product.brand}</p>
-      <p class="mb-2 stars">${generateStarRating(product.rating)}</p>
+      <p class="mb-2 text-warning">${generateStarRating(product.rating)}</p>
       <p>${product.description}</p>
       <p class="stock mb-1">In stock: <span class="${stockWarning}">${
     product.stock
