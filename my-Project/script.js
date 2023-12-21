@@ -6,7 +6,7 @@ const playerHP = document.getElementById("playerHP");
 const validWords = [
   "fire",
   "slash",
-  "dtrike",
+  "strike",
   "assault",
   "rampage",
   "ravaging",
