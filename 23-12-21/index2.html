@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="mb-3">
+        <a href="./index.html" class="me-3 btn btn-primary">Produktai</a>
+        <a href="./index2.html" class="btn btn-primary">Admin panelė</a>
+      </nav>
+      <form>
+        <h2>Produktų pridėjimas</h2>
+        <div class="row mb-2">
+          <!-- - 12 vienoje eiluteje, tie columnai kelsis i sekancia eilute -->
+
+          <div class="col-4">
+            <label for="title">Pavadinimas:</label>
+            <input type="text" id="title" name="title" class="form-control" />
+          </div>
+          <div class="col-4">
+            <label for="price">Kaina:</label>
+            <input type="text" id="price" name="price" class="form-control" />
+          </div>
+          <div class="col-4">
+            <label for="stock">Kiekis:</label>
+            <input type="text" id="stock" name="stock" class="form-control" />
+          </div>
+          <div class="col-4 mt-2">
+            <label for="brand">Prekinis ženklas:</label>
+            <input type="text" id="brand" name="brand" class="form-control" />
+          </div>
+          <div class="col-4 mt-2">
+            <label for="category">Kategorija:</label>
+            <select name="category" id="category" class="form-select">
+              <option>smartphones</option>
+              <option>laptops</option>
+              <option>fragrances</option>
+              <option>skincare</option>
+              <option>groceries</option>
+              <option>home-decoration</option>
+            </select>
+          </div>
+          <div class="col-4 mt-2">
+            <label for="imageUrl">Nuotrauka:</label>
+            <input
+              type="text"
+              id="imageUrl"
+              name="imageUrl"
+              class="form-control"
+            />
+          </div>
+          <div class="col-4 mt-2">
+            <label for="discount">Nuolaida:</label>
+            <input
+              type="number"
+              min="0"
+              max="100"
+              value="0"
+              id="discount"
+              name="discount"
+              class="form-control"
+            />
+          </div>
+          <div class="col-4 mt-2">
+            <label for="rating">Įvertinimas:</label>
+            <input
+              type="number"
+              min="0"
+              max="5"
+              value="0"
+              id="rating"
+              name="rating"
+              class="form-control"
+            />
+          </div>
+          <div class="col-4 mt-2">
+            <label for="description">Produkto aprašymas:</label>
+            <textarea
+              name="description"
+              id="description"
+              class="form-control"
+            ></textarea>
+          </div>
+          <div class="col-4 mt-2">
+            <button class="btn btn-primary" id="submit">Submit</button>
+            <input
+              type="file"
+              id="fileInput"
+              accept=".txt, .json"
+              class="form-control mb-2"
+            />
+            <button class="btn btn-primary" id="uploadFile">Upload File</button>
+          </div>
+        </div>
+      </form>
+      <hr />
+      <form action="">
+        <h2>Produktų filtracija</h2>
+        <div class="row mb-5">
+          <div class="col-4 mt-2">
+            <label for="filter-product-name">Pavadinimas:</label>
+            <input
+              type="text"
+              id="filter-product-name"
+              name="filter-product-name"
+              class="form-control"
+            />
+          </div>
+          <div class="col-4 mt-2">
+            <label for="filter-product-priceFrom">Kaina nuo:</label>
+            <input
+              type="number"
+              id="filter-product-priceFrom"
+              min="0"
+              name="filter-product-priceFrom"
+              class="form-control"
+            />
+          </div>
+          <div class="col-4 mt-2">
+            <label for="filter-product-priceTo">Kaina iki:</label>
+            <input
+              type="number"
+              id="filter-product-priceTo"
+              min="0"
+              name="filter-product-priceTo"
+              class="form-control"
+            />
+          </div>
+          <div class="col-4 mt-2">
+            <label for="filter-product-brand">Prekinis ženklas:</label>
+            <input
+              type="text"
+              id="filter-product-brand"
+              name="filter-product-brand"
+              class="form-control"
+            />
+          </div>
+          <div class="col-4 mt-2">
+            <label for="filter-product-category">Kategorija:</label>
+            <select
+              name="filter-product-category"
+              id="filter-product-category"
+              class="form-select"
+            >
+              <option>smartphones</option>
+              <option>laptops</option>
+              <option>fragrances</option>
+              <option>skincare</option>
+              <option>groceries</option>
+              <option>home-decoration</option>
+            </select>
+          </div>
+          <div class="col-4 mt-2">
+            <label for="filter-product-description">Aprašymas:</label>
+            <input
+              type="text"
+              id="filter-product-description"
+              name="filter-product-description"
+              class="form-control"
+            />
+          </div>
+        </div>
+      </form>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Prekės pavadinimas</th>
+            <th>Kaina</th>
+            <th>Kiekis</th>
+            <th>Prekinis ženklas</th>
+            <th>Kategorija</th>
+            <th>Ištrynimas</th>
+            <th>Atnaujinimas</th>
+          </tr>
+        </thead>
+        <tbody id="dynamic-data">
+          <tr>
+            <td>1</td>
+            <td>Apple produkt</td>
+            <td>1.50</td>
+            <td>1</td>
+            <td>Apple</td>
+            <td>Maistas</td>
+          </tr>
+          <!-- dinaminis turinys -->
+        </tbody>
+      </table>
+    </div>
+    <dialog id="productInfo" style="width: 70%; padding: 0"></dialog>
+
+    <script>
+      document
+        .getElementById("uploadFile")
+        .addEventListener("click", function () {
+          const fileInput = document.getElementById("fileInput");
+          const file = fileInput.files[0];
+
+          if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+              const fileContent = event.target.result;
+              try {
+                const parsedObjects = JSON.parse(fileContent);
+                if (Array.isArray(parsedObjects)) {
+                  // Add the parsed objects to localStorage as products
+                  const existingProducts =
+                    JSON.parse(localStorage.getItem("products")) || [];
+                  const updatedProducts =
+                    existingProducts.concat(parsedObjects);
+                  localStorage.setItem(
+                    "products",
+                    JSON.stringify(updatedProducts)
+                  );
+
+                  getTableContents(updatedProducts);
+                  alert("File uploaded and products added successfully.");
+                } else {
+                  alert("Uploaded file does not contain an array of objects.");
+                }
+              } catch (error) {
+                alert(
+                  "Error parsing the file. Please upload a valid JSON file."
+                );
+              }
+            };
+
+            reader.readAsText(file);
+          } else {
+            alert("Please select a file.");
+          }
+        });
+
+      document
+        .getElementById("uploadFile")
+        .addEventListener("click", function () {
+          const fileInput = document.getElementById("fileInput");
+          const file = fileInput.files[0];
+
+          if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+              const fileContent = event.target.result;
+              try {
+                const parsedObjects = JSON.parse(fileContent);
+                if (Array.isArray(parsedObjects)) {
+                  const existingProducts =
+                    JSON.parse(localStorage.getItem("products")) || [];
+
+                  const productsToAdd = parsedObjects.filter((newProduct) => {
+                    return !existingProducts.some(
+                      (product) => product.id === newProduct.id
+                    );
+                  });
+
+                  if (productsToAdd.length > 0) {
+                    addToProducts(productsToAdd);
+                  } else {
+                    alert(
+                      "No new products to add or all products already exist!"
+                    );
+                  }
+                } else {
+                  alert("Uploaded file does not contain an array of objects.");
+                }
+              } catch (error) {
+                alert(
+                  "Error parsing the file. Please upload a valid JSON file."
+                );
+              }
+            };
+
+            reader.readAsText(file);
+          } else {
+            alert("Please select a file.");
+          }
+        });
+
+      //CRUD:
+      //CREATE - Sukurti įrašą. Good
+      //READ - Peržiūrėti įrašą. Good
+      //UPDATE - Atnaujinti įrašą. Good
+      //DELETE - Ištrinti įrašą. Good
+      if (!localStorage.getItem("products"))
+        localStorage.setItem("products", "[]");
+
+      const products = JSON.parse(localStorage.getItem("products"));
+
+      if (!localStorage.getItem("currentId"))
+        localStorage.setItem("currentId", "1");
+
+      let currentId = +localStorage.getItem("currentId");
+
+      let editMode = false;
+      let currentProduct;
+
+      const dynamicDataElement = document.getElementById("dynamic-data"),
+        titleInputElement = document.getElementById("title"),
+        priceInputElement = document.getElementById("price"),
+        stockInputElement = document.getElementById("stock"),
+        brandInputElement = document.getElementById("brand"),
+        categoryInputElement = document.getElementById("category"),
+        submitButtonElement = document.getElementById("submit"),
+        modalElement = document.getElementById("productInfo"),
+        photoElement = document.getElementById("imageUrl"),
+        discountElement = document.getElementById("discount"),
+        ratingElement = document.getElementById("rating"),
+        descriptionElement = document.getElementById("description"),
+        filterNameElement = document.getElementById("filter-product-name"),
+        filterPriceFromElement = document.getElementById(
+          "filter-product-priceFrom"
+        ),
+        filterPriceToElement = document.getElementById(
+          "filter-product-priceTo"
+        ),
+        filterBrandElement = document.getElementById("filter-product-brand"),
+        filterCategoryElement = document.getElementById(
+          "filter-product-category"
+        ),
+        filterDescriptionElement = document.getElementById(
+          "filter-product-description"
+        );
+
+      filterNameElement.onkeyup = filter;
+      filterPriceFromElement.onkeyup = filter;
+      filterPriceToElement.onkeyup = filter;
+      filterBrandElement.onkeyup = filter;
+
+      function filter() {
+        let productName = filterNameElement.value.toLowerCase();
+        let minPrice = +filterPriceFromElement.value;
+        let maxPrice = +filterPriceToElement.value;
+        let brandName = filterBrandElement.value.toLowerCase();
+
+        console.log(brandName);
+        let filteredArray = products.filter((product) =>
+          product.title.toLowerCase().includes(productName)
+        );
+        filteredArray = filteredArray.filter(
+          (product) => product.price >= minPrice
+        );
+        if (maxPrice !== 0)
+          filteredArray = filteredArray.filter(
+            (product) => product.price <= maxPrice
+          );
+
+        filteredArray = filteredArray.filter((product) =>
+          product.brand.toLowerCase().includes(brandName)
+        );
+        getTableContents(filteredArray);
+        // filteredArray = filteredArray.filter();
+      }
+      //Sis budas - suveikia
+      // generateTableContent()
+      // function generateTableContent()
+      // {
+
+      // }
+      // Sitas budas - nesuveikia
+      // getTableContents()
+      // const getTableContents = ()=>{
+
+      // }
+
+      //Automatinis funkcijos iškvietimas apskliaudus funkciją ir už jos padėjus skliaustelius
+
+      // (()=>{
+      //     console.log('funkcija')
+      // })()
+
+      const getTableContents = (productsArray) => {
+        let dynamicHTML = ``;
+
+        for (const product of productsArray) {
+          dynamicHTML += `<tr>
+						<td onclick="showModal(${product.id})">${product.id}</td>
+						<td>${product.title}</td>
+						<td>${product.price}</td>
+						<td>${product.stock}</td>
+						<td>${product.brand}</td>
+						<td>${product.category}</td>
+                        <td>
+                            <button 
+                            class="btn btn-danger" onclick="deleteProduct(${product.id})">Ištrinti</button>
+                        </td>
+                        <td>
+                            <button 
+                            class="btn btn-success" onclick="setEdit(${product.id})">Atnaujinti</button>
+                        </td>
+					</tr>`;
+        }
+
+        dynamicDataElement.innerHTML = dynamicHTML;
+        // dynamicDataElement
+      };
+      getTableContents(products);
+
+      const showModal = (id) => {
+        let elementIndex = products.findIndex((value) => value.id === id);
+        const product = products[elementIndex];
+
+        let dynamicHTML = `<div id="modalBody" style="width:100%; height: 100%;"><div style="max-width: 70%; margin: 0 auto; padding: .5rem;">
+				<img
+					src="${product.thumbnail}"
+					alt="product photo"
+				/>
+				<div class="product-details">
+					<div class="row">
+						<span class="col-lg-2 fw-bold">Nuolaida:</span>
+						<span class="col-lg-1">-${product.discountPercentage}%</span>
+					</div>
+					<div class="row">
+						<span class="col-lg-2 fw-bold">Įvertinimas</span>
+						<span class="col-lg-1">${product.rating}</span>
+					</div>
+					<div class="row">
+						<span class="col-lg-2 fw-bold">Aprašymas</span>
+						<span class="col-10"
+							>${product.description}</span
+						>
+					</div>
+				</div>
+				<button class="btn btn-danger mt-3" onclick="modalElement.close()">Uždaryti</button>
+			</div></div>`;
+        modalElement.innerHTML = dynamicHTML;
+        document.querySelector("#modalBody").onclick = (event) => {
+          event.stopPropagation();
+          console.log("Clicked on modal window");
+        };
+        modalElement.showModal();
+      };
+
+      modalElement.onclick = () => {
+        modalElement.close();
+      };
+
+      const addToProducts = (newProduct) => {
+        const products = JSON.parse(localStorage.getItem("products")) || [];
+
+        const isExisting = products.some(
+          (product) => product.id === newProduct.id
+        );
+
+        if (!isExisting) {
+          products.push(newProduct);
+          localStorage.setItem("products", JSON.stringify(products));
+          getTableContents(products);
+          alert("New product added successfully!");
+        } else {
+          alert("Product already exists!");
+        }
+      };
+
+      const createNewRecord = (event) => {
+        event.preventDefault();
+
+        // Get values from form inputs
+        const newProduct = {
+          id: currentId,
+          title: titleInputElement.value,
+          description: descriptionElement.value,
+          price: +priceInputElement.value,
+          discountPercentage: +discountElement.value,
+          rating: +ratingElement.value,
+          stock: +stockInputElement.value,
+          brand: brandInputElement.value,
+          category: categoryInputElement.value,
+          thumbnail: photoElement.value,
+        };
+
+        currentId++;
+        addToProducts(newProduct);
+        localStorage.setItem("currentId", currentId);
+
+        // Clear form inputs
+        titleInputElement.value = "";
+        descriptionElement.value = "";
+        priceInputElement.value = "";
+        discountElement.value = "";
+        ratingElement.value = "";
+        stockInputElement.value = "";
+        brandInputElement.value = "";
+        categoryInputElement.value = "";
+        photoElement.value = "";
+      };
+
+      submitButtonElement.onclick = createNewRecord;
+
+      //Elemento ištrynimas
+      const deleteProduct = (id) => {
+        let elementIndex = products.findIndex((value) => value.id === id);
+        products.splice(elementIndex, 1);
+        getTableContents(products);
+        localStorage.setItem("products", JSON.stringify(products));
+      };
+
+      const updateProduct = (event) => {
+        //Page reload prevencija
+        event.preventDefault();
+        //Pagal currentProduct indeksą, gautą iš atnaujinimo režimo funkcijos,
+        //Pakeiciame reiksmes i naujas, gautas is inputu.
+        products[currentProduct].title = titleInputElement.value;
+        products[currentProduct].price = +priceInputElement.value;
+        products[currentProduct].stock = +stockInputElement.value;
+        products[currentProduct].brand = brandInputElement.value;
+        products[currentProduct].category = categoryInputElement.value;
+        products[currentProduct].thumbnail = photoElement.value;
+        products[currentProduct].rating = +ratingElement.value;
+        products[currentProduct].discountPercentage = +discountElement.value;
+        products[currentProduct].description = descriptionElement.value;
+
+        //Atnaujiname table su pakeistais duomenimis
+        getTableContents(products);
+
+        //resetinam state atgal
+        currentProduct = undefined;
+        editMode = false;
+        submitButtonElement.onclick = createNewRecord;
+        submitButtonElement.innerText = "Submit";
+        submitButtonElement.classList.remove("btn-success");
+        submitButtonElement.classList.add("btn-primary");
+
+        //resetinam inputu reiksmes i tuscias
+        titleInputElement.value = "";
+        priceInputElement.value = "";
+        stockInputElement.value = "";
+        brandInputElement.value = "";
+        categoryInputElement.value = "";
+        photoElement.value = "";
+        ratingElement.value = "";
+        discountElement.value = "";
+        descriptionElement.value = "";
+        localStorage.setItem("products", JSON.stringify(products));
+      };
+
+      //Elemento atnaujinimo režimo ijungimas
+      const setEdit = (id) => {
+        let elementIndex = products.findIndex((value) => value.id === id);
+
+        const product = products[elementIndex];
+
+        //inputu uzpildymas duomenimis
+        titleInputElement.value = product.title;
+        priceInputElement.value = product.price;
+        stockInputElement.value = product.stock;
+        brandInputElement.value = product.brand;
+        categoryInputElement.value = product.category;
+        photoElement.value = product.thumbnail;
+        ratingElement.value = product.rating;
+        discountElement.value = product.discountPercentage;
+        descriptionElement.value = product.description;
+
+        submitButtonElement.innerText = "Update";
+        submitButtonElement.classList.add("btn-success");
+        submitButtonElement.classList.remove("btn-primary");
+        submitButtonElement.onclick = updateProduct;
+        currentProduct = elementIndex;
+        editMode = true;
+      };
+    </script>
+  </body>
+</html>
