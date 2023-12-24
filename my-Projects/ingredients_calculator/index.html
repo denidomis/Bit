@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Recipe Ingredient Calculator</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5 mb-3">
+      <h1>Recipe Ingredient Calculator</h1>
+      <form id="recipeForm">
+        <div class="form-group">
+          <label for="ingredientName">Ingredient Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="ingredientName"
+            placeholder="Enter Ingredient Name"
+            required
+          />
+        </div>
+        <div class="form-row">
+          <div class="col">
+            <label for="ingredientAmount">Ingredient Amount:</label>
+            <input
+              type="number"
+              step="0.1"
+              class="form-control"
+              id="ingredientAmount"
+              placeholder="Enter Amount"
+              required
+            />
+          </div>
+          <div class="col">
+            <label for="unitSelect">Measurement Unit:</label>
+            <select class="form-control" id="unitSelect">
+              <!-- Volume Units -->
+              <option value="tsp">Teaspoon (tsp)</option>
+              <option value="tbsp">Tablespoon (tbsp)</option>
+              <option value="fl oz">Fluid Ounce (fl oz)</option>
+              <option value="cup">Cup</option>
+              <option value="pint">Pint</option>
+              <option value="quart">Quart</option>
+              <option value="gallon">Gallon</option>
+              <option value="ml">Milliliter (ml)</option>
+              <option value="l">Liter (l)</option>
+
+              <!-- Weight Units -->
+              <option value="oz">Ounce (oz)</option>
+              <option value="lb">Pound (lb)</option>
+              <option value="g">Gram (g)</option>
+              <option value="kg">Kilogram (kg)</option>
+
+              <!-- Count Units -->
+              <option value="each">Each</option>
+              <option value="dozen">Dozen</option>
+
+              <!-- Miscellaneous Units -->
+              <option value="pinch">Pinch</option>
+              <option value="dash">Dash</option>
+              <option value="drop">Drop</option>
+              <option value="slice">Slice</option>
+
+              <!-- Option none -->
+              <option value="unit">Unit</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">
+          Add Ingredient
+        </button>
+      </form>
+      <hr />
+      <h2>Ingredients List</h2>
+      <ul id="ingredientsList" class="list-group">
+        <!-- Ingredient items will be added here -->
+      </ul>
+      <hr />
+      <h3>Total Amount of Ingredients:</h3>
+      <ul id="totalAmount" class="list-group">
+        <!-- Total amount of each ingredient will be displayed here -->
+      </ul>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
