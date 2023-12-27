@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Book Storage</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-4">
+      <h2>Book Details</h2>
+      <form id="bookForm">
+        <div class="form-group">
+          <label for="author">Author:</label>
+          <input type="text" class="form-control" id="author" required />
+        </div>
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" class="form-control" id="title" required />
+        </div>
+        <div class="form-group">
+          <label for="edition">Edition:</label>
+          <input type="text" class="form-control" id="edition" />
+        </div>
+        <div class="form-group">
+          <label for="isbn">ISBN:</label>
+          <input type="text" class="form-control" id="isbn" />
+        </div>
+        <div class="form-group">
+          <label for="notes">Notes:</label>
+          <textarea class="form-control" id="notes"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="subjects">Subjects:</label>
+          <input type="text" class="form-control" id="subjects" />
+        </div>
+        <div class="form-group">
+          <label for="contributors">Other Authors/Contributors:</label>
+          <input type="text" class="form-control" id="contributors" />
+        </div>
+        <div class="form-group">
+          <label for="blurb">Blurb:</label>
+          <textarea class="form-control" id="blurb"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="format">Format:</label>
+          <input type="text" class="form-control" id="format" />
+        </div>
+        <div class="form-group">
+          <label for="deweyDecimal">Dewey Decimal Number:</label>
+          <input type="text" class="form-control" id="deweyDecimal" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Book</button>
+      </form>
+
+      <h2 class="mt-4">Book List</h2>
+      <table class="table mt-3">
+        <thead>
+          <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Edition</th>
+            <th>ISBN</th>
+            <th>Notes</th>
+            <th>Subjects</th>
+            <th>Other Authors/Contributors</th>
+            <th>Blurb</th>
+            <th>Format</th>
+            <th>Dewey Decimal Number</th>
+          </tr>
+        </thead>
+        <tbody id="bookList">
+          <!-- Book details will be displayed here -->
+        </tbody>
+      </table>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

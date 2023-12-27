@@ -1,0 +1,38 @@
+[
+  {
+    "author": "John Doe",
+    "title": "Sample Book",
+    "edition": "1st Edition",
+    "ISBN": "978-1-123456-78-9",
+    "notes": "This is a sample book for demonstration purposes.",
+    "subjects": ["Fiction", "Sample"],
+    "contributors": ["Jane Smith"],
+    "blurb": "A fascinating sample book that showcases various aspects.",
+    "format": "Paperback",
+    "deweyDecimal": "813.6"
+  },
+  {
+    "author": "John Doe",
+    "title": "Sample Book",
+    "edition": "1st Edition",
+    "ISBN": "978-1-123456-78-9",
+    "notes": "This is a sample book for demonstration purposes.",
+    "subjects": ["Fiction", "Sample"],
+    "contributors": ["Jane Smith"],
+    "blurb": "A fascinating sample book that showcases various aspects.",
+    "format": "Paperback",
+    "deweyDecimal": "813.6"
+  },
+  {
+    "author": "Harper Lee",
+    "title": "To Kill a Mockingbird",
+    "edition": "First edition",
+    "ISBN": "9780061120084",
+    "notes": "Pulitzer Prize-winning novel",
+    "subjects": ["Fiction", "Legal drama"],
+    "contributors": "None",
+    "blurb": "A gripping, heart-wrenching, and wholly remarkable tale of coming-of-age in a South poisoned by virulent prejudice.",
+    "format": "Paperback",
+    "deweyDecimal": "813.54"
+  }
+]
