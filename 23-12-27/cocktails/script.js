@@ -17,11 +17,11 @@ const modalData = {
   modalElement: document.querySelector("#modal"),
   modalElementDynamic: document.querySelector("#modal div .dynamic-content"),
 };
-content = document.querySelector(".content");
-(categorySelect = document.querySelector("#drinksbyCategory")),
-  (glassSelect = document.querySelector("#drinksbyGlass")),
-  (ingredientSelect = document.querySelector("#drinksbyIngredient")),
-  (searchInput = document.querySelector("#searchInput"));
+const content = document.querySelector(".content");
+const categorySelect = document.querySelector("#drinksbyCategory");
+const glassSelect = document.querySelector("#drinksbyGlass");
+const ingredientSelect = document.querySelector("#drinksbyIngredient");
+const searchInput = document.querySelector("#searchInput");
 
 const initializeCategoryList = async () => {
   categoryList = await fetch(
@@ -74,22 +74,30 @@ const getAllCoctails = async () => {
 };
 
 const showDrinksInResultDiv = async (drinks) => {
+  let dynamicHTML = "";
   for (const drink of drinks) {
-    content.innerHTML += `<div class="card m-2 rounded border border-black" style="width: 18rem;" onclick="openModal(${drink.idDrink})">
+    dynamicHTML += `<div class="card m-2 rounded border border-black" style="width: 18rem;" onclick="openModal(${drink.idDrink})">
 		<div class="card-img-top overflow-hidden">
 			<img style="width: 100%; height: auto;" src="${drink.strDrinkThumb}" "/> 
 		</div>
 			<class="card-body">
 				<h2 class="text-2xl justify-self-center text-cyan-800 font-semibold text-center max-w-[360px]  pt-5">${drink.strDrink}</h2> 
 			</div>
-		</div`;
+		</div>`;
   }
+  content.innerHTML = dynamicHTML;
 };
-async function findRandomAndShow() {
-  const drink = await findRandomDrink();
-  // console.log(drink);
-  openModal(drink);
-}
+
+document.querySelector("#findRandom").addEventListener(
+  "click",
+
+  async function findRandomAndShow(event) {
+    event.preventDefault();
+    const drink = await findRandomDrink();
+    // console.log(drink);
+    openModal(drink);
+  }
+);
 
 let scrollPosition = 0;
 function preventScroll(e) {
@@ -111,11 +119,15 @@ async function openModal(drink) {
   let drinkData = drink;
   if (typeof drink === "string" || typeof drink === "number")
     drinkData = await searchDrinkById(drink);
-  let html = `<img
+  let html = `
+  <div class="d-flex justify-content-center">
+  <img
 	src="${drinkData.strDrinkThumb}"
 	alt="drink image"
-	class="image w-[40%] rounded-md"
+	class="image rounded-md"
+  style="width: 25%; height: 40%;"
 />
+</div>
 <div class="">
 	<h2 class="text-center text-xl">${drinkData.strDrink}</h2>
 	<div class="flex flex-col">
@@ -154,46 +166,52 @@ async function openModal(drink) {
   document.querySelector("#modal-card").innerHTML = html;
 }
 
-async function search() {
-  const categorySelectValue = categorySelect.value,
-    glassSelectValue = glassSelect.value,
-    ingredientSelectValue = ingredientSelect.value,
-    searchInputValue = searchInput.value;
-  const defaultSelectValue = "empty";
-  console.log(
-    `categorySelect: ${categorySelectValue} inputValue: ${searchInputValue}`
-  );
-  let drinksBySearch, drinksByCategory, drinksByGlass, drinksByIngredient;
+document.querySelector("#search").addEventListener(
+  "click",
 
-  if (searchInputValue !== "")
-    drinksBySearch = await searchByDrinkName(searchInputValue);
-  if (categorySelectValue !== defaultSelectValue)
-    drinksByCategory = await searchByCategory(categorySelectValue);
-  if (glassSelectValue !== defaultSelectValue)
-    drinksByGlass = await searchByGlass(glassSelectValue);
-  if (ingredientSelectValue !== defaultSelectValue)
-    drinksByIngredient = await searchByIngredient(ingredientSelectValue);
-  let drinks;
+  async function search(event) {
+    event.preventDefault();
+    const categorySelectValue = categorySelect.value,
+      glassSelectValue = glassSelect.value,
+      ingredientSelectValue = ingredientSelect.value,
+      searchInputValue = searchInput.value;
+    const defaultSelectValue = "empty";
+    console.log(
+      `categorySelect: ${categorySelectValue} inputValue: ${searchInputValue}`
+    );
+    let drinksBySearch, drinksByCategory, drinksByGlass, drinksByIngredient;
 
-  if (drinksBySearch) drinks = drinksBySearch;
-  if (drinksByCategory) {
-    if (!drinks) drinks = drinksByCategory;
-    else drinks = filterDrinksByConjuction(drinks, drinksByCategory);
-  }
-  if (drinksByGlass) {
-    if (!drinks) drinks = drinksByGlass;
-    else drinks = filterDrinksByConjuction(drinks, drinksByGlass);
-  }
-  if (drinksByIngredient) {
-    if (!drinks) drinks = drinksByIngredient;
-    else drinks = filterDrinksByConjuction(drinks, drinksByIngredient);
-  }
-  if (!drinks)
-    drinks = [...allCoctails.ordinaryDrinks, ...allCoctails.coctails];
-  showDrinksInResultDiv(drinks);
+    if (searchInputValue !== "")
+      drinksBySearch = await searchByDrinkName(searchInputValue);
+    if (categorySelectValue !== defaultSelectValue)
+      drinksByCategory = await searchByCategory(categorySelectValue);
+    if (glassSelectValue !== defaultSelectValue)
+      drinksByGlass = await searchByGlass(glassSelectValue);
+    if (ingredientSelectValue !== defaultSelectValue)
+      drinksByIngredient = await searchByIngredient(ingredientSelectValue);
+    let drinks;
 
-  return drinks;
-}
+    if (drinksBySearch) drinks = drinksBySearch;
+    if (drinksByCategory) {
+      if (!drinks) drinks = drinksByCategory;
+      else drinks = filterDrinksByConjuction(drinks, drinksByCategory);
+    }
+    if (drinksByGlass) {
+      if (!drinks) drinks = drinksByGlass;
+      else drinks = filterDrinksByConjuction(drinks, drinksByGlass);
+    }
+    if (drinksByIngredient) {
+      if (!drinks) drinks = drinksByIngredient;
+      else drinks = filterDrinksByConjuction(drinks, drinksByIngredient);
+    }
+    if (!drinks) {
+      drinks = [...allCoctails.ordinaryDrinks, ...allCoctails.coctails];
+    }
+    showDrinksInResultDiv(drinks);
+
+    return drinks;
+  }
+);
 
 async function searchByCategory(categoryName) {
   let drinks = await fetch(
@@ -260,16 +278,12 @@ initializeGlassList();
 initializeAlcoholicList();
 initializeIngredientList();
 
-//laikinas, console.logams
 setTimeout(() => {
-  //mano kintamieji: allCoctails, categoryList, glassList, ingredientList, alcoholicList;
-  // console.log(categoryList);
   for (const category of categoryList)
     categorySelect.innerHTML += `<option value="${category.strCategory}">${category.strCategory}</option>`;
   for (const glass of glassList)
     glassSelect.innerHTML += `<option value="${glass.strGlass}">${glass.strGlass}</option>`;
   for (const ingredient of ingredientList)
     ingredientSelect.innerHTML += `<option value="${ingredient.strIngredient1}">${ingredient.strIngredient1}</option>`;
-  // console.log(ingredientList);
 }, 1000);
 getAllCoctails();
