@@ -130,16 +130,16 @@ async function openModal(drink) {
 </div>
 <div class="">
 	<h2 class="text-center text-xl">${drinkData.strDrink}</h2>
-	<div class="flex flex-col">
-		<div class="flex justify-between">
+	<div class="flex flex-col p-1">
+		<div class="flex justify-between p-1">
 			<span class="font-bold">Category:</span>
 			<span class="italic ">${drinkData.strCategory}</span>
 		</div>
-		<div class="flex justify-between">
+		<div class="flex justify-between p-1">
 			<span class="font-bold">Alcohol:</span>
 			<span class="italic ">${drinkData.strAlcoholic}</span>
 		</div>
-		<div class="flex justify-between">
+		<div class="flex justify-between p-1">
 			<span class="font-bold">Glass:</span>
 			<span class="italic ">${drinkData.strGlass}</span>
 		</div>		<div class="flex justify-between">
