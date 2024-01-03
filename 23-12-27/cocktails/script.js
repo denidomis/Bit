@@ -1,19 +1,6 @@
 let allCoctails, categoryList, glassList, ingredientList, alcoholicList;
 
-function filterDrinksByConjuction(arr1, arr2) {
-  let resultArr = [];
-  for (let drink of arr1) {
-    for (let drink2 of arr2) {
-      if (drink.idDrink === drink2.idDrink) {
-        resultArr.push(drink);
-        break;
-      }
-    }
-  }
-  return resultArr;
-}
-
-const modalData = {
+const modalSelector = {
   modalElement: document.querySelector("#modal"),
   modalElementDynamic: document.querySelector("#modal div .dynamic-content"),
 };
@@ -65,13 +52,24 @@ const getAllCoctails = async () => {
     ordinaryDrinks: ordinaryDrinks.drinks,
     coctails: coctails.drinks,
   };
-
-  //kokteiliu atvaizdavimas kataloge
   showDrinksInResultDiv([
     ...allCoctails.coctails,
     ...allCoctails.ordinaryDrinks,
   ]);
 };
+
+function filterDrinksJoin(arr1, arr2) {
+  let resultArr = [];
+  for (let drink of arr1) {
+    for (let drink2 of arr2) {
+      if (drink.idDrink === drink2.idDrink) {
+        resultArr.push(drink);
+        break;
+      }
+    }
+  }
+  return resultArr;
+}
 
 const showDrinksInResultDiv = async (drinks) => {
   let dynamicHTML = "";
@@ -81,7 +79,7 @@ const showDrinksInResultDiv = async (drinks) => {
 			<img style="width: 100%; height: auto;" src="${drink.strDrinkThumb}" "/> 
 		</div>
 			<class="card-body">
-				<h2 class="text-2xl justify-self-center text-cyan-800 font-semibold text-center max-w-[360px]  pt-5">${drink.strDrink}</h2> 
+				<h2 class="text-center pt-4">${drink.strDrink}</h2> 
 			</div>
 		</div>`;
   }
@@ -94,7 +92,6 @@ document.querySelector("#findRandom").addEventListener(
   async function findRandomAndShow(event) {
     event.preventDefault();
     const drink = await findRandomDrink();
-    // console.log(drink);
     openModal(drink);
   }
 );
@@ -105,17 +102,14 @@ function preventScroll(e) {
   window.scrollTo(0, scrollPosition);
 }
 function closeModal() {
-  modalData.modalElement.classList.add("hidden");
+  modalSelector.modalElement.classList.add("hidden");
   document.body.classList.add("modal-close");
-  //   modalData.modalElementDynamic.innerHTML = ``;
-  //   document.removeEventListener("scroll", preventScroll);
 }
 
 async function openModal(drink) {
   scrollPosition = window.scrollY || document.documentElement.scrollTop;
-  modalData.modalElement.classList.remove("hidden");
+  modalSelector.modalElement.classList.remove("hidden");
   document.body.classList.add("modal-open");
-  //   document.addEventListener("scroll", preventScroll);
   let drinkData = drink;
   if (typeof drink === "string" || typeof drink === "number")
     drinkData = await searchDrinkById(drink);
@@ -194,15 +188,15 @@ document.querySelector("#search").addEventListener(
     if (drinksBySearch) drinks = drinksBySearch;
     if (drinksByCategory) {
       if (!drinks) drinks = drinksByCategory;
-      else drinks = filterDrinksByConjuction(drinks, drinksByCategory);
+      else drinks = filterDrinksJoin(drinks, drinksByCategory);
     }
     if (drinksByGlass) {
       if (!drinks) drinks = drinksByGlass;
-      else drinks = filterDrinksByConjuction(drinks, drinksByGlass);
+      else drinks = filterDrinksJoin(drinks, drinksByGlass);
     }
     if (drinksByIngredient) {
       if (!drinks) drinks = drinksByIngredient;
-      else drinks = filterDrinksByConjuction(drinks, drinksByIngredient);
+      else drinks = filterDrinksJoin(drinks, drinksByIngredient);
     }
     if (!drinks) {
       drinks = [...allCoctails.ordinaryDrinks, ...allCoctails.coctails];
@@ -223,7 +217,7 @@ async function searchByCategory(categoryName) {
   drinks = await drinks.json();
   return drinks.drinks;
 }
-//----------NEEEsuprantu sito..
+
 async function searchByDrinkName(drinkName) {
   let drinks = await fetch(
     `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=` +
@@ -233,7 +227,7 @@ async function searchByDrinkName(drinkName) {
   console.log(drinks);
 
   return drinks.drinks;
-} //?
+}
 
 async function searchByCategoryAndFilterDrinkNames(categoryName, drinkName) {
   let drinks = await searchByCategory(categoryName);
