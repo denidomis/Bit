@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        height: fit-content;
+        background-image: url("https://img.freepik.com/photos-premium/fond-bar-club-bouteilles-retro-eclaire_1015979-3145.jpg");
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        z-index: -1;
+      }
+
+      body::before {
+        content: ""; /* Important */
+        z-index: -1; /* Important */
+        position: inherit;
+        left: inherit;
+        top: inherit;
+        width: inherit;
+        height: inherit;
+        background-image: inherit;
+        background-size: cover;
+        filter: blur(8px);
+      }
+
+      #modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .bg-white {
+        background-color: white;
+      }
+
+      body.modal-open {
+        overflow: hidden;
+      }
+
+      body.modal-close {
+        overflow: auto !important;
+      }
+      #searchInput {
+        min-width: 140px;
+      }
+
+      .bg-rosybrown {
+        background-color: #16144ed2;
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      class="navbar bg-body-tertiary fixed-top"
+      style="
+        background-image: url('https://media.istockphoto.com/id/1341348395/photo/old-dark-brown-wooden-board.webp?b=1&s=170667a&w=0&k=20&c=2RkgZGKXuSVu78tb-13vUpNiHacLoYgQ9MwAt0_5KiI=') !important;
+      "
+    >
+      <div class="container-fluid w-100">
+        <form class="d-flex p-2 w-100" role="search">
+          <input
+            id="searchInput"
+            type="text"
+            class="form-control me-2"
+            placeholder="Search by name"
+          />
+          <select id="drinksbyCategory" class="border mx-2">
+            <option selected value="empty">Choose a category</option>
+          </select>
+          <select id="drinksbyGlass" class="border mx-2">
+            <option selected value="empty">Choose glass type</option>
+          </select>
+          <select id="drinksbyIngredient" class="border mx-2">
+            <option selected value="empty">Choose ingredient</option>
+          </select>
+          <button class="btn btn-secondary w-25 mx-1" id="search">
+            Search
+          </button>
+          <button
+            class="btn btn-secondary w-25 mx-1"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            id="findRandom"
+          >
+            feeling lucky
+          </button>
+        </form>
+      </div>
+    </nav>
+    <div
+      class="container p-1 d-flex flex-row flex-wrap justify-content-around content"
+    ></div>
+    <div id="modal" class="modal-overlay hidden">
+      <div class="modal-content" style="width: fit-content">
+        <div class="modal-body d-flex justify-content-center"></div>
+        <div
+          class="card overflow-auto bg-rosybrown text-white"
+          style="width: 90%; margin: 5vh; height: 70vh"
+        >
+          <div class="modal-header p-2">
+            <h5 class="modal-title"></h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              onclick="closeModal()"
+            ></button>
+          </div>
+          <hr />
+          <div id="modal-card"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
