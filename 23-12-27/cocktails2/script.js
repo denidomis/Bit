@@ -9,6 +9,18 @@ const categorySelect = document.querySelector("#drinksbyCategory");
 const glassSelect = document.querySelector("#drinksbyGlass");
 const ingredientSelect = document.querySelector("#drinksbyIngredient");
 const searchInput = document.querySelector("#searchInput");
+const alphabet = document.querySelector(".alphabet");
+
+function createAlphabetButtons() {
+  const letters = "abcdefghijklmnopqrstuvwxyz";
+  let dynamicHTML = ``;
+  for (let i = 0; i < letters.length; i++) {
+    const letter = letters[i];
+    dynamicHTML += `<button class="btn btn-light">${letter}</button>`;
+  }
+  alphabet.innerHTML = dynamicHTML;
+}
+createAlphabetButtons();
 
 const initializeCategoryList = async () => {
   categoryList = await fetch(
@@ -283,6 +295,33 @@ function loadSelectedFilters() {
   return JSON.parse(localStorage.getItem("selectedFilters")) || {};
 }
 
+function pageReset() {
+  const categorySelectValue = "empty";
+  const glassSelectValue = "empty";
+  const ingredientSelectValue = "empty";
+  const searchInputValue = "";
+  const selectedFilters = JSON.stringify({
+    categorySelectValue,
+    glassSelectValue,
+    ingredientSelectValue,
+    searchInputValue,
+  });
+  saveSelectedFilters(selectedFilters);
+  pageDefaultLoad();
+}
+
+function pageDefaultLoad() {
+  setTimeout(() => {
+    for (const category of categoryList)
+      categorySelect.innerHTML += `<option value="${category.strCategory}">${category.strCategory}</option>`;
+    for (const glass of glassList)
+      glassSelect.innerHTML += `<option value="${glass.strGlass}">${glass.strGlass}</option>`;
+    for (const ingredient of ingredientList)
+      ingredientSelect.innerHTML += `<option value="${ingredient.strIngredient1}">${ingredient.strIngredient1}</option>`;
+  }, 1000);
+  getAllCoctails();
+}
+
 //Page initialization
 initializeCategoryList();
 initializeGlassList();
@@ -305,16 +344,12 @@ setTimeout(() => {
       (value) => value === "" || value === "empty"
     )
   ) {
-    setTimeout(() => {
-      for (const category of categoryList)
-        categorySelect.innerHTML += `<option value="${category.strCategory}">${category.strCategory}</option>`;
-      for (const glass of glassList)
-        glassSelect.innerHTML += `<option value="${glass.strGlass}">${glass.strGlass}</option>`;
-      for (const ingredient of ingredientList)
-        ingredientSelect.innerHTML += `<option value="${ingredient.strIngredient1}">${ingredient.strIngredient1}</option>`;
-    }, 1000);
-    getAllCoctails();
+    pageDefaultLoad();
   } else {
+    console.log(selectValues.searchInputValue);
+    let savedSearchInputVal = selectValues.searchInputValue;
+    searchInput.value = savedSearchInputVal;
+
     // Functions to check if a category, glass, or ingredient is selected from localStorage
     function selectCategoryFromLocalStorage(categoryName) {
       const savedCategory = selectValues.categorySelectValue;

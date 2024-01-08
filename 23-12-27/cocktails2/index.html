@@ -10,6 +10,10 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <style>
       body {
         height: fit-content;
@@ -74,6 +78,10 @@
       .mt-custom {
         margin-top: 10%;
       }
+      .btn-lg {
+        width: 50px;
+        height: 40px;
+      }
     </style>
   </head>
   <body>
@@ -83,7 +91,7 @@
         background-image: url('https://media.istockphoto.com/id/1341348395/photo/old-dark-brown-wooden-board.webp?b=1&s=170667a&w=0&k=20&c=2RkgZGKXuSVu78tb-13vUpNiHacLoYgQ9MwAt0_5KiI=') !important;
       "
     >
-      <div class="container-fluid w-100">
+      <div class="container-fluid w-100 d-flex flex-column">
         <form class="d-flex p-2 w-100" role="search">
           <input
             id="searchInput"
@@ -100,12 +108,15 @@
           <select id="drinksbyIngredient" class="border mx-2">
             <option value="empty">Choose ingredient</option>
           </select>
-          <button
-            class="btn btn-secondary w-25 mx-1"
-            onclick="search()"
-            id="search"
-          >
+          <button class="btn btn-secondary w-25 mx-1" id="search">
             Search
+          </button>
+          <button
+            onclick="pageReset()"
+            class="btn btn-secondary w-25 mx-1"
+            id="reset"
+          >
+            Reset
           </button>
           <button
             class="btn btn-secondary w-25 mx-1"
@@ -116,6 +127,7 @@
             feeling lucky
           </button>
         </form>
+        <div class="alphabet d-flex justify-content-between w-100"></div>
       </div>
     </nav>
     <div
@@ -132,11 +144,13 @@
             <h5 class="modal-title"></h5>
             <button
               type="button"
-              class="btn-close btn-close-white"
+              class="btn btn-light btn-lg px-5 d-flex justify-content-center"
               data-bs-dismiss="modal"
               aria-label="Close"
               onclick="closeModal()"
-            ></button>
+            >
+              <i class="fa fa-times" aria-hidden="false"></i>
+            </button>
           </div>
           <hr />
           <div id="modal-card"></div>
