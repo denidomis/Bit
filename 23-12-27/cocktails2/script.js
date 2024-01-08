@@ -171,6 +171,15 @@ document.querySelector("#search").addEventListener(
       ingredientSelectValue = ingredientSelect.value,
       searchInputValue = searchInput.value;
     const defaultSelectValue = "empty";
+
+    let selectedFilters = JSON.stringify({
+      categorySelectValue,
+      glassSelectValue,
+      searchInputValue,
+      ingredientSelectValue,
+    });
+    saveSelectedFilters(selectedFilters);
+    console.log(loadSelectedFilters());
     console.log(
       `categorySelect: ${categorySelectValue} inputValue: ${searchInputValue}`
     );
@@ -189,7 +198,9 @@ document.querySelector("#search").addEventListener(
     if (drinksBySearch) drinks = drinksBySearch;
     if (drinksByCategory) {
       if (!drinks) drinks = drinksByCategory;
-      else drinks = filterDrinksJoin(drinks, drinksByCategory);
+      else {
+        drinks = filterDrinksJoin(drinks, drinksByCategory);
+      }
     }
     if (drinksByGlass) {
       if (!drinks) drinks = drinksByGlass;
@@ -230,11 +241,6 @@ async function searchByDrinkName(drinkName) {
   return drinks.drinks;
 }
 
-async function searchByCategoryAndFilterDrinkNames(categoryName, drinkName) {
-  let drinks = await searchByCategory(categoryName);
-  drinks = drinks.filter((drink) => drink.strDrink === drinkName);
-  return drinks;
-}
 async function searchDrinkById(id) {
   let drink = await fetch(
     "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id
@@ -268,17 +274,104 @@ async function searchByIngredient(ingredientName) {
   return drinks.drinks;
 }
 
+//Local storage functions
+function saveSelectedFilters(selectedFilters) {
+  localStorage.setItem("selectedFilters", JSON.stringify(selectedFilters));
+}
+
+function loadSelectedFilters() {
+  return JSON.parse(localStorage.getItem("selectedFilters")) || {};
+}
+
+//Page initialization
 initializeCategoryList();
 initializeGlassList();
 initializeAlcoholicList();
 initializeIngredientList();
 
 setTimeout(() => {
-  for (const category of categoryList)
-    categorySelect.innerHTML += `<option value="${category.strCategory}">${category.strCategory}</option>`;
-  for (const glass of glassList)
-    glassSelect.innerHTML += `<option value="${glass.strGlass}">${glass.strGlass}</option>`;
-  for (const ingredient of ingredientList)
-    ingredientSelect.innerHTML += `<option value="${ingredient.strIngredient1}">${ingredient.strIngredient1}</option>`;
+  storedData = loadSelectedFilters();
+  const decodedData = JSON.parse(storedData);
+  selectValues = {
+    categorySelectValue: decodedData.categorySelectValue || "empty",
+    glassSelectValue: decodedData.glassSelectValue || "empty",
+    searchInputValue: decodedData.searchInputValue || "",
+    ingredientSelectValue: decodedData.ingredientSelectValue || "empty",
+  };
+
+  if (
+    !selectValues ||
+    Object.values(selectValues).every(
+      (value) => value === "" || value === "empty"
+    )
+  ) {
+    setTimeout(() => {
+      for (const category of categoryList)
+        categorySelect.innerHTML += `<option value="${category.strCategory}">${category.strCategory}</option>`;
+      for (const glass of glassList)
+        glassSelect.innerHTML += `<option value="${glass.strGlass}">${glass.strGlass}</option>`;
+      for (const ingredient of ingredientList)
+        ingredientSelect.innerHTML += `<option value="${ingredient.strIngredient1}">${ingredient.strIngredient1}</option>`;
+    }, 1000);
+    getAllCoctails();
+  } else {
+    // Functions to check if a category, glass, or ingredient is selected from localStorage
+    function selectCategoryFromLocalStorage(categoryName) {
+      const savedCategory = selectValues.categorySelectValue;
+      if (savedCategory === categoryName) {
+        return "selected";
+      }
+      return "";
+    }
+
+    function selectGlassFromLocalStorage(glassName) {
+      const savedGlass = selectValues.glassSelectValue;
+      if (savedGlass === glassName) {
+        return "selected";
+      }
+      return "";
+    }
+
+    function selectIngredientFromLocalStorage(ingredientName) {
+      const savedIngredient = selectValues.ingredientSelectValue;
+      if (savedIngredient === ingredientName) {
+        return "selected";
+      }
+      return "";
+    }
+    for (let i = 1; i < categoryList.length; i++) {
+      const category = categoryList[i];
+      categoryList.sort((a, b) => a.strCategory.localeCompare(b.strCategory));
+      categorySelect.innerHTML += `<option value="${
+        category.strCategory
+      }" ${selectCategoryFromLocalStorage(category.strCategory)}>${
+        category.strCategory
+      }</option>`;
+    }
+
+    // Iterate through glassList, excluding the first item (default option)
+    for (let i = 1; i < glassList.length; i++) {
+      const glass = glassList[i];
+      glassList.sort((a, b) => a.strGlass.localeCompare(b.strGlass));
+      glassSelect.innerHTML += `<option value="${
+        glass.strGlass
+      }" ${selectGlassFromLocalStorage(glass.strGlass)}>${
+        glass.strGlass
+      }</option>`;
+    }
+
+    // Iterate through ingredientList, excluding the first item (default option)
+    for (let i = 1; i < ingredientList.length; i++) {
+      const ingredient = ingredientList[i];
+      ingredientList.sort((a, b) =>
+        a.strIngredient1.localeCompare(b.strIngredient1)
+      );
+      ingredientSelect.innerHTML += `<option value="${
+        ingredient.strIngredient1
+      }" ${selectIngredientFromLocalStorage(ingredient.strIngredient1)}>${
+        ingredient.strIngredient1
+      }</option>`;
+    }
+    document.querySelector("#search").click();
+  }
 }, 1000);
-getAllCoctails();
