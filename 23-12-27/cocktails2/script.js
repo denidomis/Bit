@@ -1,4 +1,9 @@
-let allCoctails, categoryList, glassList, ingredientList, alcoholicList;
+let assignedLetter,
+  allCoctails,
+  categoryList,
+  glassList,
+  ingredientList,
+  alcoholicList;
 
 const modalSelector = {
   modalElement: document.querySelector("#modal"),
@@ -10,17 +15,6 @@ const glassSelect = document.querySelector("#drinksbyGlass");
 const ingredientSelect = document.querySelector("#drinksbyIngredient");
 const searchInput = document.querySelector("#searchInput");
 const alphabet = document.querySelector(".alphabet");
-
-function createAlphabetButtons() {
-  const letters = "abcdefghijklmnopqrstuvwxyz";
-  let dynamicHTML = ``;
-  for (let i = 0; i < letters.length; i++) {
-    const letter = letters[i];
-    dynamicHTML += `<button class="btn btn-light">${letter}</button>`;
-  }
-  alphabet.innerHTML = dynamicHTML;
-}
-createAlphabetButtons();
 
 const initializeCategoryList = async () => {
   categoryList = await fetch(
@@ -173,16 +167,41 @@ async function openModal(drink) {
   document.querySelector("#modal-card").innerHTML = html;
 }
 
+function createAlphabetButtons() {
+  const letters = "abcdefghijklmnopqrstuvwxyz";
+  let dynamicHTML = ``;
+  for (let i = 0; i < letters.length; i++) {
+    const letter = letters[i];
+    let selectedClass =
+      loadSelectedFilters().selectedLetter === letter ? "selected" : "";
+    dynamicHTML += `<button class="btn btn-light ${selectedClass}" onclick="handleSelectedLetter('${letter}')">${letter}</button>`;
+  }
+  alphabet.innerHTML = dynamicHTML;
+}
+createAlphabetButtons();
+
+function handleSelectedLetter(letter) {
+  assignedLetter = letter;
+  saveSelectedLetter(assignedLetter);
+}
+
+function saveSelectedLetter(letter) {
+  localStorage.setItem("selectedLetter", letter);
+}
+
 document.querySelector("#search").addEventListener(
   "click",
 
   async function search(event) {
     event.preventDefault();
+    const assignedLetter = localStorage.getItem("selectedLetter") || "";
     const categorySelectValue = categorySelect.value,
       glassSelectValue = glassSelect.value,
-      ingredientSelectValue = ingredientSelect.value,
-      searchInputValue = searchInput.value;
+      ingredientSelectValue = ingredientSelect.value;
+    let searchInputValue;
     const defaultSelectValue = "empty";
+
+    searchInputValue = searchInput.value + assignedLetter;
 
     let selectedFilters = JSON.stringify({
       categorySelectValue,
