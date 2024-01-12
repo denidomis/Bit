@@ -53,6 +53,12 @@
         width: 50%;
         transform: rotate(180deg);
       }
+      #fallingCoin {
+        position: absolute;
+        top: 0;
+        left: 30%;
+      }
+
       .image-div2 {
         position: absolute;
         top: 0;
@@ -66,14 +72,15 @@
         top: 5%;
         right: 5%;
         width: 15%;
+        height: 100%;
         display: none;
       }
       #tipJar {
         position: absolute;
-        right: -25%;
-        top: 110%;
-        width: 180%;
-        height: 200%;
+        right: -45%;
+        top: 30%;
+        width: 150%;
+        height: 60%;
       }
       .icon {
         width: 60px;
@@ -148,7 +155,12 @@
           <img class="img-fluid" src="fall-in-value.png" alt="" />
         </div>
         <div class="image-div3">
-          <img class="img-fluid" src="fall-in-value.png" alt="" />
+          <img
+            class="img-fluid"
+            id="fallingCoin"
+            src="fall-in-value.png"
+            alt=""
+          />
           <img id="tipJar" src="tip.png" alt="" />
         </div>
       </div>

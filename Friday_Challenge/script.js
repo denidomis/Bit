@@ -20,10 +20,12 @@ calculate.addEventListener("click", () => {
 function showImage() {
   const image = document.querySelector(".image-div");
   const coin = document.querySelector("#onTop");
+  const fallingCoin = document.querySelector("#fallingCoin");
   const image2 = document.querySelector(".image-div2");
   const image3 = document.querySelector(".image-div3");
   setTimeout(() => {
     image.style.display = "block";
+    coin.style.display = "block";
   }, 0);
   setTimeout(() => {
     coin.style.display = "none";
@@ -32,5 +34,10 @@ function showImage() {
   setTimeout(() => {
     image2.style.display = "none";
     image3.style.display = "block";
+    fallingCoin.style.display = "block";
   }, 1000);
+  setTimeout(() => {
+    image.style.display = "none";
+    fallingCoin.style.display = "none";
+  }, 1500);
 }
