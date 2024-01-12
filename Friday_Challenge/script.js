@@ -19,13 +19,14 @@ calculate.addEventListener("click", () => {
 
 function showImage() {
   const image = document.querySelector(".image-div");
+  const coin = document.querySelector("#onTop");
   const image2 = document.querySelector(".image-div2");
   const image3 = document.querySelector(".image-div3");
   setTimeout(() => {
     image.style.display = "block";
   }, 0);
   setTimeout(() => {
-    image.style.display = "none";
+    coin.style.display = "none";
     image2.style.display = "block";
   }, 500);
   setTimeout(() => {
