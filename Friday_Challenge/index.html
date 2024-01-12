@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="tips.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background-color: rgb(14, 94, 94);
+        overflow: hidden;
+      }
+      h2 {
+        text-align: center;
+      }
+
+      label {
+        font-size: 17px;
+        font-weight: bold;
+      }
+
+      .tipContainer {
+        background-color: rgba(118, 253, 246, 0.596);
+        border-radius: 10px;
+        padding: 3rem;
+        margin-top: 7rem;
+      }
+      .image-div {
+        position: absolute;
+        top: 30vh;
+        left: -15px;
+        width: 30%;
+        display: none;
+      }
+      #blockingDiv {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        height: 56%;
+        width: 50%;
+        background-color: rgb(14, 94, 94);
+      }
+
+      #onTop {
+        position: absolute;
+        top: 0;
+        left: 40%;
+        width: 50%;
+        transform: rotate(180deg);
+      }
+      .image-div2 {
+        position: absolute;
+        top: 0;
+        left: 40%;
+        transform: rotate(-90deg);
+        width: 15%;
+        display: none;
+      }
+      .image-div3 {
+        position: absolute;
+        top: 15%;
+        right: 5%;
+        width: 15%;
+        /* display: none; */
+      }
+      #tipJar {
+        position: absolute;
+        right: -25%;
+        top: 120%;
+        width: 180%;
+        height: 200%;
+      }
+      .icon {
+        width: 60px;
+        height: 60px;
+      }
+      .letter-spacing {
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 5px;
+      }
+    </style>
+    <title>Tip calculator</title>
+  </head>
+  <body>
+    <section
+      class="d-flex justify-content-center align-items-center"
+      style="height: 100vh"
+    >
+      <div class="tipContainer">
+        <div class="header d-flex">
+          <img class="icon" src="tips.png" alt="" />
+          <h2 class="fs-1 mb-5 mx-2">Tip calculator</h2>
+        </div>
+        <div class="body">
+          <form>
+            <div class="pb-3 d-flex justify-content-between">
+              <label for="bill">Bill amount:</label>
+              <input
+                class="border-0 rounded-2"
+                type="number"
+                id="bill"
+                name="bill"
+              />
+            </div>
+            <div class="pb-3 d-flex justify-content-between">
+              <label for="tip">Tip percentage:</label>
+              <select class="px-3 rounded-2" id="tip" name="tip">
+                <option value="" selected>Choose the tip</option>
+                <option value="0">no tip - bad</option>
+                <option value="5">5% - medium</option>
+                <option value="10">10% - Good</option>
+                <option value="25">25% - Exelent</option>
+              </select>
+            </div>
+            <button
+              class="btn btn-dark w-100 mb-3 letter-spacing"
+              type="submit"
+              id="calculate"
+            >
+              Calculate
+            </button>
+          </form>
+        </div>
+        <div class="footer">
+          <div class="d-flex justify-content-between">
+            <h3 class="text-warning">Tip:</h3>
+            <h3 id="finalTip">$0.00</h3>
+          </div>
+          <div class="d-flex justify-content-between">
+            <h3 class="text-danger">Total:</h3>
+            <h3 id="total">$0.00</h3>
+          </div>
+        </div>
+        <div class="image-div">
+          <div>
+            <div id="blockingDiv"></div>
+            <img class="img-fluid" src="coin-toss.png" alt="" />
+          </div>
+          <img class="img-fluid" id="onTop" src="fall-in-value.png" alt="" />
+        </div>
+        <div class="image-div2">
+          <img class="img-fluid" src="fall-in-value.png" alt="" />
+        </div>
+        <div class="image-div3">
+          <img class="img-fluid" src="fall-in-value.png" alt="" />
+          <img id="tipJar" src="tip.png" alt="" />
+        </div>
+      </div>
+    </section>
+    <script src="script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
