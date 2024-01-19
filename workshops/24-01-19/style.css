@@ -1,0 +1,279 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Vytauytas ir Gytis */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.upper {
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: 400;
+  font-family: "GT America Trial", sans-serif;
+}
+
+.left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.left a:hover {
+  text-decoration: underline;
+}
+
+img:hover {
+  filter: brightness(0.8);
+}
+
+.tab {
+  font-size: 30px;
+}
+
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right span {
+  font-size: 40px;
+}
+
+.material-symbols-outlined:hover {
+  transition: all 0.5s ease-in-out;
+  scale: 1.2;
+}
+
+.lower {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(218, 219, 241);
+  padding: 10px;
+  font-family: "GT America Trial", sans-serif;
+  font-size: 40px;
+  padding: 100px 0;
+  font-weight: 100;
+}
+
+.search {
+  width: 50%;
+  position: relative;
+  padding: 0 10px;
+}
+
+input {
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid black;
+  width: 100%;
+}
+
+input:active {
+  border: none;
+}
+
+.arrow {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  right: 2rem;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Ieva ir Gytis */
+main {
+  font-family: "GT America Standart", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+.allContainers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  padding-bottom: 2rem;
+}
+.main {
+  padding-left: 3%;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  gap: 5%;
+}
+.container1 {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 40%;
+  gap: 2rem;
+}
+
+main a {
+  font-weight: 400;
+  text-decoration: none;
+  color: #4c5fd5;
+  font-size: 20px;
+  line-height: 28px;
+}
+a:hover {
+  text-decoration: underline;
+}
+h4 {
+  font-weight: 700;
+  text-decoration: none;
+  color: #191a1b;
+  font-size: 24px;
+  line-height: 28px;
+  margin: 2rem 0 1rem;
+}
+
+main p {
+  font-size: 20px;
+  line-height: 32px;
+}
+
+/* Domantas ir Gytis rase */
+
+.container {
+  width: 100%;
+  padding-right: calc(15px * 2);
+  padding-left: calc(15px * 2);
+}
+
+footer {
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  padding-bottom: 100px;
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "GT America Standard", sans-serif;
+}
+
+.footer-inside {
+  display: flex;
+  gap: 10% !important;
+  margin: 0 auto;
+  width: 90%;
+  position: relative;
+  padding-bottom: 100px;
+}
+
+.footer-col {
+  display: inline-block;
+  vertical-align: top;
+  gap: 10% !important;
+}
+
+.footer-info {
+  width: 100%;
+  height: 10rem;
+}
+
+.footer-info h2 {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: bold;
+  margin: 3rem 0 1rem;
+}
+
+footer li {
+  list-style: none;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+}
+
+footer a:hover,
+footer a:active,
+footer a:focus {
+  text-decoration: underline;
+}
+
+.break {
+  margin-bottom: 30px;
+}
+
+footer strong {
+  font-weight: 600;
+}
+
+.footer-copyright {
+  position: absolute;
+  right: 0;
+  bottom: -30%;
+  font-size: 20px;
+}
+
+@media (max-width: 1024px) {
+  .footer-copyright {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-col {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+/* Gytis dare SAUNUOLIS! */
+.help-btn {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 0.75rem;
+  border: 0px #4c5fd5;
+  background-color: #4c5fd5;
+  color: white;
+  padding: 0.92857rem 1.57143rem;
+  border-radius: 999rem;
+  letter-spacing: 0.6;
+  font-size: 1.07143rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+  font-family: "GT America Trial", sans-serif;
+}
+
+.help-btn:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 0.21429rem rgba(255, 255, 255, 0.4);
+}
+
+.svg-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: #fff;
+}

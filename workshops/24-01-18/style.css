@@ -1,0 +1,49 @@
+section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  pad: 1rem;
+  color: purple;
+}
+
+.accordion {
+  background-color: gray;
+  cursor: pointer;
+  padding: 1rem;
+  width: 100%;
+  border-bottom: 1px solid greenyellow;
+  transition: all 0.4s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.active,
+.accordion:hover {
+  background-color: rgb(160, 167, 173);
+}
+
+.accordion::after {
+  font-family: "Font Awesome 5 free";
+  font-weight: 900;
+  content: "\f067";
+}
+
+.active::after {
+  font-family: "Font Awesome 5 free";
+  font-weight: 900;
+  content: "\f068";
+}
+
+.desc {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1rem;
+  transition: max-height 0.5s ease;
+}
