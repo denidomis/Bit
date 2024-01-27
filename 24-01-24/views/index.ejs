@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/public/main.css" />
+    <title><%=title%></title>
+  </head>
+  <body>
+    <div class="container">
+      <%- include('./components/nav-bar.ejs') %>
+      <div class="content-wrap">
+        <br />
+        <% if (!username){ %>
+        <h2 class="welcome">Please sign in</h2>
+        <% }else{ %>
+        <h1 class="welcome">Welcome <%=username %></h1>
+        <div class="cards">
+          <% for (const product of list){ %>
+          <div class="card">
+            <img
+              src="https://clipart-library.com/images/AibrnoreT.png"
+              alt="Avatar"
+              style="width: 100%"
+            />
+            <div class="card-container">
+              <h4><b><%=product%></b></h4>
+              <p>Item</p>
+            </div>
+          </div>
+          <% } %>
+        </div>
+        <% } %>
+      </div>
+      <%- include('./components/footer.ejs') %>
+    </div>
+
+    <script src="/public/script.js"></script>
+  </body>
+</html>
