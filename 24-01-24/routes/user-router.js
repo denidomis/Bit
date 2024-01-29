@@ -1,21 +1,53 @@
 const express = require("express");
 const router = express.Router();
 const UserModal = require("../models/user");
+const upload = require("../config/multer").upload;
+const security = require("../utils/security");
 
-router.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
-  if (!username || !password) {
-    return res.status(400).json({
-      message: "Please provide username and password",
-    });
+router.post("/register", upload.single("img"), async (req, res) => {
+  const {
+    firstName,
+    lastName,
+    email,
+    username,
+    password,
+    birthDate,
+    mobile,
+    gender,
+  } = req.body;
+  const fileName = require("../config/multer").lastFileName;
+
+  if (
+    !firstName ||
+    !lastName ||
+    !username ||
+    !email ||
+    !password ||
+    !birthDate ||
+    !mobile ||
+    !gender
+  ) {
+    return res.status(400).json({ message: "not all data was given" });
   }
-  const newUser = new UserModal({
+
+  const salt = security.generateSalt();
+  const hashedPassword = security.hashPassword(password, salt);
+
+  const newUser = new UserModel({
     username,
     email,
-    password,
+    firstName,
+    lastName,
+    salt,
+    password: hashedPassword,
+    birthDate,
+    mobile,
+    gender,
+    profilePicture: `http://localhost:3000/public/images/${fileName}`,
   });
   await newUser.save();
-  res.status(200).json(newUser);
+  console.log(newUser);
+  res.status(200).json({ message: "labas" });
 });
 
 router.get("/users", async (req, res) => {

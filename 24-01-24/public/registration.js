@@ -1,12 +1,18 @@
-function solve() {
-  let password = document.getElementById("password").value;
-  let repassword = document.getElementById("repassword").value;
-  let mobile = document.getElementById("mobile").value;
-  let mail = document.getElementById("email").value;
-  let flag = 1;
-  let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+let firstName = document.getElementById("first").value;
+let lastName = document.getElementById("last").value;
+let email = document.getElementById("email").value;
+let birthDate = document.getElementById("dob").value;
+let username = document.getElementById("username").value;
+let password = document.getElementById("password").value;
+let repassword = document.getElementById("repassword").value;
+let mobile = document.getElementById("mobile").value;
+let gender = document.getElementById("gender").value;
+let profilePhoto = document.getElementById("profilePhoto");
 
-  if (!emailRegex.test(mail)) {
+let flag = 1;
+let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function solve() {
+  if (!emailRegex.test(email)) {
     flag = 0;
     pass.innerText = "Please enter a valid email address.";
     setTimeout(() => {
@@ -34,5 +40,26 @@ function solve() {
       pass.innerText = "";
     }, 3000);
   }
-  if (flag) alert("Form submitted");
+  if (flag) {
+    async () => {
+      const data = new FormData();
+      data.append("firstName", firstName);
+      data.append("lastName", lastName);
+      data.append("email", email);
+      data.append("birthDate", birthDate);
+      data.append("username", username);
+      data.append("password", password);
+      data.append("contact", mobile);
+      data.append("gender", gender);
+      data.append("img", profilePhoto.files[0]);
+
+      const promise = await fetch("http://localhost:3000/api/user/register", {
+        method: "post",
+        body: data,
+      });
+
+      const response = await promise.json();
+      console.log(response);
+    };
+  }
 }
