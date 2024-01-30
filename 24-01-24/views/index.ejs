@@ -12,13 +12,13 @@
   </head>
   <body>
     <div class="container">
-      <%- include('./components/nav-bar.ejs') %>
+      <%- include('./components/header.ejs') %>
       <div class="content-wrap">
         <br />
         <% if (!username){ %>
         <h2 class="welcome">Please sign in</h2>
         <% }else{ %>
-        <h1 class="welcome">Welcome <%=username %></h1>
+        <h1 class="welcome">Welcome to your home library register</h1>
         <div class="cards">
           <% for (const product of list){ %>
           <div class="card">

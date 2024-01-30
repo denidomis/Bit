@@ -8,18 +8,22 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link rel="stylesheet" href="/public/main.css" />
-    <title>Register</title>
+    <title>Profile</title>
   </head>
   <body>
     <div class="container">
-      <%- include('./components/nav-bar.ejs') %>
+      <%- include('./components/header.ejs') %>
       <div class="content-wrap">
-        <h2 class="welcome">Hello, welcome to registration</h2>
-
-        <%- include('./components/registration-form.ejs') %>
+        <div class="profile">
+          <img src="<%- ProfilePicture %>" alt="PP" style="width: 40%" />
+          <h1><%- Firstname %> <%- Lastname %></h1>
+          <h2><%- Username %></h2>
+          <h2><%- Password %></h2>
+          <h3><%- Email %></h3>
+          <h3><%- Mobile %></h3>
+          <h3><%- new Date(BirthDate).toLocaleDateString('en-CA') %></h3>
+        </div>
       </div>
-      <%- include('./components/footer.ejs') %>
     </div>
-    <script src="/public/registration.js"></script>
   </body>
 </html>

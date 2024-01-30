@@ -174,6 +174,46 @@ button {
 
 /* end of registration form css */
 
+/* Login */
+
+.logIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.logIn-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 2rem;
+  background-color: #e7e5c2;
+  transition: 0.3s;
+  width: 60%;
+  padding: 2rem;
+}
+
+.remember-me {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+.remember-me input {
+  width: 2rem;
+}
+/* End of login */
+
+/* Profile */
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+/* End of Profile */
+
+/* Footer */
 .footer {
   position: absolute;
   left: 0;

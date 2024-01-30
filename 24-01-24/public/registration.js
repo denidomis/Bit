@@ -1,17 +1,17 @@
-let firstName = document.getElementById("first").value;
-let lastName = document.getElementById("last").value;
-let email = document.getElementById("email").value;
-let birthDate = document.getElementById("dob").value;
-let username = document.getElementById("username").value;
-let password = document.getElementById("password").value;
-let repassword = document.getElementById("repassword").value;
-let mobile = document.getElementById("mobile").value;
-let gender = document.getElementById("gender").value;
-let profilePhoto = document.getElementById("profilePhoto");
-
-let flag = 1;
-let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-function solve() {
+function solve(event) {
+  let flag = 1;
+  let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  let firstName = document.getElementById("first").value;
+  let lastName = document.getElementById("last").value;
+  let email = document.getElementById("email").value;
+  let birthDate = document.getElementById("dob").value;
+  let username = document.getElementById("username").value;
+  let password = document.getElementById("password").value;
+  let repassword = document.getElementById("repassword").value;
+  let mobile = document.getElementById("mobile").value;
+  let gender = document.getElementById("gender").value;
+  let profilePhoto = document.getElementById("profilePhoto");
+  event.preventDefault();
   if (!emailRegex.test(email)) {
     flag = 0;
     pass.innerText = "Please enter a valid email address.";
@@ -40,8 +40,9 @@ function solve() {
       pass.innerText = "";
     }, 3000);
   }
+  console.log(flag);
   if (flag) {
-    async () => {
+    (async () => {
       const data = new FormData();
       data.append("firstName", firstName);
       data.append("lastName", lastName);
@@ -49,7 +50,7 @@ function solve() {
       data.append("birthDate", birthDate);
       data.append("username", username);
       data.append("password", password);
-      data.append("contact", mobile);
+      data.append("mobile", mobile);
       data.append("gender", gender);
       data.append("img", profilePhoto.files[0]);
 
@@ -60,6 +61,7 @@ function solve() {
 
       const response = await promise.json();
       console.log(response);
-    };
+      alert("Registration successfull");
+    })();
   }
 }

@@ -6,46 +6,37 @@ const schema = new mongoose.Schema({
     required: true,
     maxlength: 70,
   },
-  email: {
+  language: {
     type: String,
     required: true,
     maxlength: 120,
   },
-  salt: String,
-  password: {
+  title: {
     type: String,
     required: true,
     minlength: 7,
     maxlength: 70,
   },
-  firstName: {
+  authorFirstName: {
     type: String,
     required: true,
     maxlength: 70,
   },
-  lastName: {
+  authorLastName: {
     type: String,
     required: true,
     maxlength: 70,
   },
-  birthDate: {
+  releaseDate: {
     type: Date,
     required: true,
   },
-  gender: {
+  bookPicture: {
     type: String,
-    required: true,
-  },
-  mobile: {
-    type: String,
-    required: true,
-  },
-  profilePicture: {
-    type: String,
-    required: true,
+    required: false,
   },
 });
 
-const model = mongoose.model("user", schema);
+const bookModel = mongoose.model("book", schema);
 
-module.exports = model;
+module.exports = bookModel;
