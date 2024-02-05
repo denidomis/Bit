@@ -4,12 +4,13 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   res.render("index", {
-    title: "Forum application",
+    title: "Library application",
     message: "Hello world!",
     username: "Dodenisas",
     list: ["Book1", "Book2", "Book3", "Book4", "Book5", "Book6"],
     activeTab: "Home",
     logedIn: !!req.session?.user?.logedIn,
+    message: req.query.message,
   });
 });
 
@@ -38,7 +39,6 @@ router.get("/profile", async (req, res) => {
     Firstname: userData.firstName,
     Lastname: userData.lastName,
     Username: userData.username,
-    Password: userData.password,
     Email: userData.email,
     BirthDate: userData.birthDate,
     Mobile: userData.mobile,
@@ -49,7 +49,7 @@ router.get("/profile", async (req, res) => {
 router.get("/library", (req, res) => {
   res.render("library", {
     title: "library page",
-    message: "Hello world!",
+    message: "library",
     logedIn: !!req.session?.user?.logedIn,
   });
 });

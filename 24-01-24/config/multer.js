@@ -6,6 +6,7 @@ const storage = multer.diskStorage({
     cb(null, "public/images");
   },
   filename: function (req, file, cb) {
+    console.log("working!!!!!");
     const extension = path.extname(file.originalname);
     const lastFileName = file.fieldname + "-" + Date.now() + extension;
     module.exports.lastFileName = lastFileName;

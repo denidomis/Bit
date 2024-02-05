@@ -3,6 +3,7 @@ const pagesRouter = require("../routes/pages");
 const MongoStore = require("connect-mongo");
 const userRouter = require("../routes/user-router");
 const session = require("express-session");
+const bookRouter = require("../routes/books-router");
 const bodyParser = require("body-parser");
 
 function config(app) {
@@ -30,6 +31,7 @@ function config(app) {
   //puslapiu rautinimas
   app.use(pagesRouter);
   app.use("/api/user", userRouter);
+  app.use("/api/book", bookRouter);
 }
 
 module.exports = { config };

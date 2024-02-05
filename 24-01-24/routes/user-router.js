@@ -109,8 +109,8 @@ router.get("/logout", async (req, res) => {
   }
 });
 
-router.get("/check-session", async (req, res) => {
-  res.json({ message: "will implement in future" });
-});
+// router.get("/check-session", async (req, res) => {
+//   res.json({ message: "will implement in future" });
+// });
 
 module.exports = router;

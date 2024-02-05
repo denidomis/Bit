@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
-  username: {
-    type: String,
+  recorderId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
     required: true,
-    maxlength: 70,
   },
   language: {
     type: String,
@@ -14,8 +14,6 @@ const schema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-    minlength: 7,
-    maxlength: 70,
   },
   authorFirstName: {
     type: String,
@@ -37,6 +35,6 @@ const schema = new mongoose.Schema({
   },
 });
 
-const bookModel = mongoose.model("book", schema);
+const Model = mongoose.model("book", schema);
 
-module.exports = bookModel;
+module.exports = Model;

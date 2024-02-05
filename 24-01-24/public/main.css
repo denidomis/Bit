@@ -213,6 +213,26 @@ button {
 }
 /* End of Profile */
 
+/* Library */
+
+.fullLibrary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.fullLibrary .card {
+  width: 70%;
+  padding: 10px;
+}
+
+.authorName {
+}
+
+/* End of Library */
+
 /* Footer */
 .footer {
   position: absolute;
