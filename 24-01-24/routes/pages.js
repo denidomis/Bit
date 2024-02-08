@@ -1,5 +1,6 @@
 const express = require("express");
 const UserModal = require("../models/user");
+const BookModal = require("../models/book");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -31,7 +32,6 @@ router.get("/logIn", (req, res) => {
 });
 
 router.get("/profile", async (req, res) => {
-  const userData = await UserModal.findOne({ _id: req.session.user.id });
   res.render("profile", {
     title: "profile page",
     message: "Hello world!",
