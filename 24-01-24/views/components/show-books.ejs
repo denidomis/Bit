@@ -1,9 +1,9 @@
-<% for (const book of allBooks){ %>
 <div class="card">
-  <img src="<%- BookPicture %>" alt="PP" style="width: 80%" />
-  <h1><%- AuthorFirstName %> <%- AuthorLastName %></h1>
-  <h2><%- Title %></h2>
-  <h3><%- Language %></h3>
-  <h3><%- new Date(ReleaseDate).toLocaleDateString('en-CA') %></h3>
+  <img src="<%- book.bookPicture %>" alt="PP" style="width: 80%" />
+  <div class="bookInfo">
+    <h1><%- book.title %></h1>
+    <h2><%- book.authorFirstName %> <%- book.authorLastName %></h2>
+    <h3><%- book.language %></h3>
+    <h3><%- new Date(book.releaseDate).toLocaleDateString('en-CA') %></h3>
+  </div>
 </div>
-<% } %>

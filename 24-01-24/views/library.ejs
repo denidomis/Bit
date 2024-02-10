@@ -16,11 +16,14 @@
       <div class="content-wrap">
         <div class="fullLibrary">
           <h1>Library</h1>
-          <div class="card">
+          <div class="input-card">
             <h2>Add a book</h2>
             <%- include('./components/add-book-form.ejs') %>
           </div>
-          <div class="cards"></div>
+          <div class="cards">
+            <% for (const book of allBooks){ %> <%-
+            include('./components/show-books.ejs', {book}) %> <% } %>
+          </div>
         </div>
       </div>
       <%- include('./components/footer.ejs') %>

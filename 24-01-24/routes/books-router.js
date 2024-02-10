@@ -37,7 +37,8 @@ router.post("/add-book", upload.single("img"), async (req, res) => {
 router.get("/library", async (req, res) => {
   //Visu irasu gavimas
   const allBooks = await BookModel.find({});
-  res.status(200).json(allPosts);
+  res.status(200).json(allBooks);
+  console.log(allBooks);
 });
 
 router.get("/:id", async (req, res) => {

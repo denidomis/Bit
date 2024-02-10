@@ -1,5 +1,5 @@
 const express = require("express");
-const UserModal = require("../models/user");
+const UserModel = require("../models/user");
 const BookModal = require("../models/book");
 const router = express.Router();
 
@@ -32,8 +32,10 @@ router.get("/logIn", (req, res) => {
 });
 
 router.get("/profile", async (req, res) => {
+  const userData = await UserModel.findOne({ _id: req.session.user.id });
   res.render("profile", {
     title: "profile page",
+    activeTab: "Profile",
     message: "Hello world!",
     logedIn: !!req.session?.user?.logedIn,
     Firstname: userData.firstName,
@@ -46,11 +48,15 @@ router.get("/profile", async (req, res) => {
   });
 });
 
-router.get("/library", (req, res) => {
+router.get("/library", async (req, res) => {
+  const bookData = await BookModal.find({ recorderId: req.session.user.id });
+  console.log(bookData);
   res.render("library", {
     title: "library page",
-    message: "library",
+    activeTab: "Library",
+    message: "Library",
     logedIn: !!req.session?.user?.logedIn,
+    allBooks: bookData,
   });
 });
 
