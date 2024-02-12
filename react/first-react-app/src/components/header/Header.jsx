@@ -12,6 +12,9 @@ function Header() {
     setIsExpanded((prevState) => !prevState);
   };
 
+  const [isActive, setIsActive] = useState(false);
+  const [selected, setIsSelected] = useState("Choose one");
+
   return (
     <header className={style.header}>
       <HeaderDiv>
@@ -36,26 +39,154 @@ function Header() {
           <button className="btn btn-dark p-1">Atlikėjai</button>
           <button className="btn btn-dark p-1">Albumai</button>
         </div>
-        <div className="d-flex gap-1 py-2 w-100 justify-content-between">
-          <h5>
-            <i className="bi bi-search me-2" onClick={toggleInput}></i>
-          </h5>
-          {isExpanded && (
-            <input
-              className="bg-dark border-0 rounded"
-              type="text"
-              placeholder="Search"
-            />
-          )}
-          <select
-            className={style.customSelect}
-            aria-label="Default select example"
-          >
-            <option selected>Naujausi</option>
-            <option value="1">Paskutiniai įtraukti</option>
-            <option value="2">Abėcėlės tvarka</option>
-            <option value="3">Kūrėjas</option>
-          </select>
+        <div className={style.headernd}>
+          <div className={style.searchDropdown}>
+            <h5 className="h-100 d-flex align-items-center justify-content-center">
+              <i className="bi bi-search m-2" onClick={toggleInput}></i>
+            </h5>
+            {isExpanded && (
+              <input
+                className={style.expandableInput}
+                type="text"
+                placeholder="Search"
+              />
+            )}
+            <div className={style.selectContainer}>
+              <div className={style.dropdown}>
+                <div
+                  onClick={(e) => {
+                    setIsActive(!isActive);
+                  }}
+                  className={style.dropdownBtn}
+                >
+                  <h5>{selected}</h5>
+                  <span
+                    className={isActive ? "bi bi-list-task" : "bi bi-list-task"}
+                  />
+                </div>
+                <div
+                  className={style.dropdownContent}
+                  style={{ display: isActive ? "block" : "none" }}
+                >
+                  <div
+                    onClick={(e) => {
+                      setIsSelected(e.target.textContent);
+                      setIsActive(!isActive);
+                    }}
+                    className={style.item}
+                  >
+                    Naujausi
+                  </div>
+                  <div
+                    className={style.item}
+                    onClick={(e) => {
+                      setIsSelected(e.target.textContent);
+                      setIsActive(!isActive);
+                    }}
+                  >
+                    Paskutiniai įtraukti
+                  </div>
+                  <div
+                    className={style.item}
+                    onClick={(e) => {
+                      setIsSelected(e.target.textContent);
+                      setIsActive(!isActive);
+                    }}
+                  >
+                    Abėcėlės tvarka
+                  </div>
+                  <div
+                    className={style.item}
+                    onClick={(e) => {
+                      setIsSelected(e.target.textContent);
+                      setIsActive(!isActive);
+                    }}
+                  >
+                    Kūrėjas
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul className="list-group">
+            <li className="list-group-item d-flex bg-dark text-white">
+              <img src="images/likedSongs.png" alt="likedSongs" />
+              <div className="d-flex flex-column p-2">
+                <h6>First checkbox</h6>
+                <h6 className="text-secondary">First checkbox</h6>
+              </div>
+            </li>
+            <li className="list-group-item d-flex bg-dark text-white">
+              <img src="images/likedSongs.png" alt="likedSongs" />
+              <div className="d-flex flex-column p-2">
+                <h6>First checkbox</h6>
+                <h6 className="text-secondary">First checkbox</h6>
+              </div>
+            </li>
+            <li className="list-group-item d-flex bg-dark text-white">
+              <img src="images/likedSongs.png" alt="likedSongs" />
+              <div className="d-flex flex-column p-2">
+                <h6>First checkbox</h6>
+                <h6 className="text-secondary">First checkbox</h6>
+              </div>
+            </li>
+            <li className="list-group-item d-flex bg-dark text-white">
+              <img src="images/likedSongs.png" alt="likedSongs" />
+              <div className="d-flex flex-column p-2">
+                <h6>First checkbox</h6>
+                <h6 className="text-secondary">First checkbox</h6>
+              </div>
+            </li>
+            <li className="list-group-item d-flex bg-dark text-white">
+              <img src="images/likedSongs.png" alt="likedSongs" />
+              <div className="d-flex flex-column p-2">
+                <h6>First checkbox</h6>
+                <h6 className="text-secondary">First checkbox</h6>
+              </div>
+            </li>
+            <li className="list-group-item d-flex bg-dark text-white">
+              <img src="images/likedSongs.png" alt="likedSongs" />
+              <div className="d-flex flex-column p-2">
+                <h6>First checkbox</h6>
+                <h6 className="text-secondary">First checkbox</h6>
+              </div>
+            </li>
+            <li className="list-group-item d-flex bg-dark text-white">
+              <img src="images/likedSongs.png" alt="likedSongs" />
+              <div className="d-flex flex-column p-2">
+                <h6>First checkbox</h6>
+                <h6 className="text-secondary">First checkbox</h6>
+              </div>
+            </li>
+            <li className="list-group-item d-flex bg-dark text-white">
+              <img src="images/likedSongs.png" alt="likedSongs" />
+              <div className="d-flex flex-column p-2">
+                <h6>First checkbox</h6>
+                <h6 className="text-secondary">First checkbox</h6>
+              </div>
+            </li>
+            <li className="list-group-item d-flex bg-dark text-white">
+              <img src="images/likedSongs.png" alt="likedSongs" />
+              <div className="d-flex flex-column p-2">
+                <h6>First checkbox</h6>
+                <h6 className="text-secondary">First checkbox</h6>
+              </div>
+            </li>
+            <li className="list-group-item d-flex bg-dark text-white">
+              <img src="images/likedSongs.png" alt="likedSongs" />
+              <div className="d-flex flex-column p-2">
+                <h6>First checkbox</h6>
+                <h6 className="text-secondary">First checkbox</h6>
+              </div>
+            </li>
+            <li className="list-group-item d-flex bg-dark text-white">
+              <img src="images/likedSongs.png" alt="likedSongs" />
+              <div className="d-flex flex-column p-2">
+                <h6>First checkbox</h6>
+                <h6 className="text-secondary">First checkbox</h6>
+              </div>
+            </li>
+          </ul>
         </div>
       </HeaderDiv>
     </header>
