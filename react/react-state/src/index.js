@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import Lauout from "./Layout";
+import Section from "./components/Section";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Lauout />
+    <Section />
+    <Section />
   </React.StrictMode>
 );

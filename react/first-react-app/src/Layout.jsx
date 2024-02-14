@@ -1,16 +1,11 @@
-import "./index.css";
-import App from "./components/App";
-import Header from "./components/header/Header";
-
+import Content from "./components/Content/Content";
+import LeftPanel from "./components/LeftPanel/LeftPanel";
 function Layout() {
   return (
-    <>
-      <div className="allApp">
-        <Header />
-        <App />
-      </div>
-    </>
+    <div className="flex gap-4 p-4">
+      <LeftPanel />
+      <Content />
+    </div>
   );
 }
-
 export default Layout;
