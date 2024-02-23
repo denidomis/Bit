@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Countdown from "react-countdown";
+import Confetti from "react-confetti";
 
 export default function TimeShow({ timer }) {
   const [key, setKey] = useState(Date.now());
@@ -9,17 +10,20 @@ export default function TimeShow({ timer }) {
   }, [timer]);
 
   const Completionist = () => {
-    return <span>You are good to go!</span>;
+    return (
+      <Confetti
+        width={window.innerWidth || 300}
+        height={window.innerHeight || 200}
+        numberOfPieces={2000}
+      />
+    );
   };
 
   return (
-    <div>
-      <h1 className="text-white font-bold">
-        Timer:
-        <Countdown key={key} date={Date.now() + timer}>
-          <Completionist />
-        </Countdown>
-      </h1>
+    <div className="timer">
+      <Countdown key={key} date={Date.now() + timer}>
+        <Completionist />
+      </Countdown>
     </div>
   );
 }

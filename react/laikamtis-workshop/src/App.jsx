@@ -4,8 +4,17 @@ import TimeShow from "./components/TimeShow.jsx";
 import dateFormat from "dateformat";
 
 function App() {
+  function addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
+
   const d = new Date();
-  const [time, setTime] = useState(d.getHours() + ":" + d.getMinutes());
+  const [time, setTime] = useState(
+    addZero(d.getHours()) + ":" + addZero(d.getMinutes() + 1)
+  );
   const [date, setDate] = useState(new Date());
   const [timer, setTimer] = useState("1234");
 
@@ -28,15 +37,19 @@ function App() {
   };
 
   return (
-    <div className="bg-blue-700 h-screen overflow-hidden px-5 mx-4 my-1 flex items-center justify-center flex-col gap-10">
-      <PickDateTime
-        time={time}
-        setTime={setTime}
-        date={date}
-        setDate={setDate}
-        StartTimer={StartTimer}
-      />
-      <TimeShow timer={timer} />
+    <div className="bg-blue-700 h-screen px-5 flex justify-around flex-col gap-10">
+      <div className="h-full flex items-center justify-evenly flex-col gap-10">
+        <PickDateTime
+          time={time}
+          setTime={setTime}
+          date={date}
+          setDate={setDate}
+          StartTimer={StartTimer}
+        />
+        <h1 className="text-white font-bold">
+          <TimeShow timer={timer} />
+        </h1>
+      </div>
     </div>
   );
 }

@@ -41,7 +41,7 @@ export default function PickDateTime({
       </div>
       <button
         onClick={StartTimer}
-        className="text-white bg-cyan-900 p-2 mx-2 rounded-md"
+        className="text-white bg-green-500 p-2 mx-2 rounded-md"
       >
         Pradėti
       </button>
