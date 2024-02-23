@@ -1,6 +1,12 @@
 import dateFormat from "dateformat";
 
-export default function PickDateTime({ date, setDate, setTime, time }) {
+export default function PickDateTime({
+  date,
+  setDate,
+  setTime,
+  time,
+  StartTimer,
+}) {
   return (
     <div className="flex gap-5 items-center">
       <div>
@@ -33,7 +39,10 @@ export default function PickDateTime({ date, setDate, setTime, time }) {
           }}
         />
       </div>
-      <button className="text-white bg-cyan-900 p-2 mx-2 rounded-md">
+      <button
+        onClick={StartTimer}
+        className="text-white bg-cyan-900 p-2 mx-2 rounded-md"
+      >
         Pradėti
       </button>
     </div>

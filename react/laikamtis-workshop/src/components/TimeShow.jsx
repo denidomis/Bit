@@ -1,37 +1,24 @@
-import dateFormat from "dateformat";
+import { useState, useEffect } from "react";
+import Countdown from "react-countdown";
 
-export default function TimeShow({ date, time }) {
-  function FormatingDate() {
-    const DateTime = new Date(
-      dateFormat(date, "yyyy-mm-dd") + `T` + time + ":00"
-    );
-    const UtcDateTime = Date.UTC(
-      DateTime.getUTCFullYear(),
-      DateTime.getUTCMonth(),
-      DateTime.getUTCDate(),
-      DateTime.getUTCHours(),
-      DateTime.getUTCMinutes(),
-      DateTime.getUTCSeconds()
-    );
-    const UtcDateTimeNow = Date.now();
-    console.log(UtcDateTime);
-    const NewDateime = UtcDateTime - UtcDateTimeNow;
-    console.log(NewDateime);
+export default function TimeShow({ timer }) {
+  const [key, setKey] = useState(Date.now());
 
-    return DateTime;
-  }
+  useEffect(() => {
+    setKey(Date.now());
+  }, [timer]);
 
-  function CalcDate(Date) {
-    const Year = 1970 - Date.getFullYear();
-    const Month = 1 - Date.getMonth();
-    const Day = 1 - Date.getDate();
-    const Hour = 3 - Date.getHours();
-  }
+  const Completionist = () => {
+    return <span>You are good to go!</span>;
+  };
 
   return (
     <div>
-      <h1 className="text-white font-bold" onClick={FormatingDate}>
-        Timer: {FormatingDate}
+      <h1 className="text-white font-bold">
+        Timer:
+        <Countdown key={key} date={Date.now() + timer}>
+          <Completionist />
+        </Countdown>
       </h1>
     </div>
   );
