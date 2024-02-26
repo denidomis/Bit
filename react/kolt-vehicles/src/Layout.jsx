@@ -5,37 +5,66 @@ import { useEffect, useState } from "react";
 
 export default function Layout() {
   const [originalScooters, setOriginalScooters] = useState([]);
-  const [scooter, setScooters] = useState([]);
+  const [filteredScooters, setFilteredScooters] = useState([]);
+  const [idCounter, setIdCounter] = useState(0);
 
   useEffect(() => {
-    fetch("./paspirtukai.json")
-      .then((resp) => resp.json())
-      .then((data) => {
-        setOriginalScooters(data);
-        setScooters(data);
-      });
+    const storedScooters = localStorage.getItem("scootersData");
+    if (storedScooters) {
+      const parsedScooters = JSON.parse(storedScooters);
+      setOriginalScooters(parsedScooters);
+      setFilteredScooters(parsedScooters);
+      if (parsedScooters.length > 0) {
+        const maxId = Math.max(...parsedScooters.map((scooter) => scooter.id));
+        setIdCounter(maxId + 1);
+      }
+    }
   }, []);
 
   const handleShowFreeClick = () => {
-    setScooters(originalScooters.filter((s) => s.isBusy));
+    const filtered = originalScooters.filter((s) => s.isBusy);
+    setFilteredScooters(filtered);
   };
 
   const handleShowBusyClick = () => {
-    setScooters(originalScooters.filter((s) => !s.isBusy));
+    const filtered = originalScooters.filter((s) => !s.isBusy);
+    setFilteredScooters(filtered);
   };
 
   const handleShowFastestClick = () => {
-    const sortedScooters = [...scooter].sort((a, b) => b.ride - a.ride);
-    setScooters(sortedScooters);
+    const sorted = [...filteredScooters].sort((a, b) => b.ride - a.ride);
+    setFilteredScooters(sorted);
   };
 
   const handleShowSlowestClick = () => {
-    const sortedScooters = [...scooter].sort((a, b) => a.ride - b.ride);
-    setScooters(sortedScooters);
+    const sorted = [...filteredScooters].sort((a, b) => a.ride - b.ride);
+    setFilteredScooters(sorted);
   };
 
   const handleResetFiltersClick = () => {
-    setScooters(originalScooters);
+    setFilteredScooters(originalScooters);
+  };
+
+  const updateOriginalScooters = (scooters) => {
+    setOriginalScooters(scooters);
+    if (filteredScooters === originalScooters) {
+      setFilteredScooters(scooters);
+    }
+  };
+
+  const updateFilteredScooters = (scooters) => {
+    setFilteredScooters(scooters);
+  };
+
+  const handleStatusChange = (scooterId, newStatus) => {
+    const updatedScooters = originalScooters.map((scooter) => {
+      if (scooter.id === scooterId) {
+        return { ...scooter, isBusy: newStatus };
+      }
+      return scooter;
+    });
+
+    updateOriginalScooters(updatedScooters);
   };
 
   return (
@@ -46,8 +75,12 @@ export default function Layout() {
         onShowFastestClick={handleShowFastestClick}
         onShowSlowestClick={handleShowSlowestClick}
         onResetFiltersClick={handleResetFiltersClick}
+        updateOriginalScooters={updateOriginalScooters}
+        updateFilteredScooters={updateFilteredScooters}
+        idCounter={idCounter}
+        setIdCounter={setIdCounter}
       />
-      <Middle scooter={scooter} />
+      <Middle scooter={filteredScooters} onStatusChange={handleStatusChange} />
       <Bottom />
     </div>
   );
