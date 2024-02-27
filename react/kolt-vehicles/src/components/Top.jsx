@@ -15,6 +15,7 @@ export default function Top({
   const [model, setModel] = useState("");
   const [price, setPrice] = useState("");
   const [ride, setRide] = useState("");
+  const [registrationCode, setRegistrationCode] = useState("");
 
   useEffect(() => {
     const storedScooters = localStorage.getItem("scootersData");
@@ -64,6 +65,7 @@ export default function Top({
       hourlyPrice: price,
       ride: ride,
       isBusy: false,
+      registrationCode: registrationCode,
     };
 
     updateOriginalScooters((prevScooters) => [...prevScooters, newScooter]);
@@ -94,11 +96,18 @@ export default function Top({
           placeholder="Paspirtuko modelis"
         />
         <input
+          type="text"
+          value={registrationCode}
+          onChange={(e) => setRegistrationCode(e.target.value)}
+          className="rounded px-2 py-1 outline-2 outline-sky-400 w-1/4"
+          placeholder="Paspirtuko Valst. Nr."
+        />
+        <input
           type="number"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           className="rounded px-2 py-1 outline-2 outline-sky-400 w-1/4"
-          placeholder="Paspirtuko kaina"
+          placeholder="Paspirtuko kaina/h"
         />
         <input
           type="number"
