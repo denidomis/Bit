@@ -68,7 +68,7 @@ export default function Layout() {
       if (scooter.id === scooterId) {
         if (newStatus === true) {
           const date3 = Date.now();
-          const rida = scooter.ride - getRandom(1, scooter.ride, 2);
+          const rida = scooter.ride + getRandom(1, scooter.ride, 2);
           return {
             ...scooter,
             isBusy: newStatus,
