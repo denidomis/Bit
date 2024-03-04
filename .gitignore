@@ -7,9 +7,6 @@
 .parcel-cache/data.mdb
 .parcel-cache/lock.mdb
 
-package.json
-package-lock.json
-
 node_modules
 dist
 24-01-24/secure_info
