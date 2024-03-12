@@ -2,8 +2,8 @@ const mysql = require("mysql2");
 
 const connection = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  password: "1234",
+  user: "dode",
+  password: "dode1234",
   database: "pc_rent_platform",
 });
 
@@ -15,9 +15,13 @@ connection.connect((err) => {
   }
 });
 
-async function execute(sql) {
-  const result = await connection.promise().execute(sql);
-  return result;
+async function execute(sql, parameters = []) {
+  try {
+    const result = await connection.promise().execute(sql, parameters);
+    return result;
+  } catch (err) {
+    console.log(`Error executing query ${sql}, Error: ${err} `);
+  }
 }
 
 module.exports = execute;
