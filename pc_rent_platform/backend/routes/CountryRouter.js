@@ -21,6 +21,7 @@ router.post("/", async (req, res) => {
     }
   }
 });
+
 router.get("/:id", async (req, res) => {
   const country = await CountryModel.findById(req.params.id);
   res.send(country.getInstance());
@@ -33,6 +34,7 @@ router.get("/", async (req, res) => {
   );
   res.send(allCountries);
 });
+
 router.delete("/:id", async (req, res) => {
   try {
     const result = await CountryModel.deleteById(req.params.id);

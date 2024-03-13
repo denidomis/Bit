@@ -10,13 +10,13 @@ module.exports = class Country {
     this.countryShort = countryShort;
   }
 
-  async update() {
-    const result = await executeQuery(
-      `UPDATE countries SET salies_pavadinimas = ?, salies_trumpinys = ? WHERE id = ?`,
-      [this.country, this.countryShort, this.#id]
-    );
-    return result;
-  }
+  // async update() {
+  //   const result = await executeQuery(
+  //     `UPDATE countries SET salies_pavadinimas = ?, salies_trumpinys = ? WHERE id = ?`,
+  //     [this.country, this.countryShort, this.#id]
+  //   );
+  //   return result;
+  // }
   get id() {
     return this.#id;
   }
