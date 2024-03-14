@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const mainRouter = require("./MainRouter");
-const setupSessions = require("./utils/sessionsSetup");
+const setupSessions = require("./utils/sessionSetup");
 
 app.use(express.json());
 setupSessions(app);

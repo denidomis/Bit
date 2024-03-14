@@ -46,6 +46,7 @@ router.post("/register", async (req, res) => {
       addressId: newAddress.id,
     });
     await newUser.save();
+    console.log(newUser);
     // 3. Užregistruoti vartotojo sesiją
     req.session.user = {
       username: newUser.username,
@@ -69,8 +70,23 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.get("/", (req, res) => {
-  res.send("Veikia routas");
+// Login route
+// Log out route
+router.get("/logout", async (req, res) => {
+  if (req.session.isLoggedIn) {
+    req.session.destroy();
+    return res.status(200).json({ message: "Sekmingai buvote atjungtas" });
+  } else {
+    return res
+      .status(200)
+      .json({ messsage: "Tam kad atsijungti pirmiausia turite prisijungti" });
+  }
+});
+
+router.get("/check-session", (req, res) => {
+  if (req.session.isLoggedIn)
+    return res.status(200).json({ isLoggedIn: req.session.isLoggedIn });
+  return res.status(200).json({ isLoggedIn: false });
 });
 
 module.exports = router;

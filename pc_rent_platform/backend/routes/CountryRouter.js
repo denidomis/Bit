@@ -29,6 +29,7 @@ router.get("/:id", async (req, res) => {
 
 router.get("/", async (req, res) => {
   const allCountriesWithoutId = await CountryModel.findAll();
+  // console.log(allCountriesWithoutId);
   const allCountries = allCountriesWithoutId.map((value) =>
     value.getInstance()
   );

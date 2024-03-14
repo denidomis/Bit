@@ -30,14 +30,15 @@ module.exports = class Country {
   static async findAll() {
     // const result = await executeQuery(`SELECT * FROM countries`)[0]
     const results = await executeQuery(`SELECT * FROM countries`);
+    // console.log(results);
     const result = results[0].map(
       (countryObj) =>
         new Country(
           {
-            country: countryObj.salies_pavadinimas,
-            countryShort: countryObj.salies_trumpinys,
+            country: countryObj.country_name,
+            countryShort: countryObj.county_abbreviation,
           },
-          countryObj.id
+          countryObj.country_id
         )
     );
 
@@ -50,10 +51,10 @@ module.exports = class Country {
     const result = results[0][0];
     return new Country(
       {
-        country: result.salies_pavadinimas,
-        countryShort: result.salies_trumpinys,
+        country: result.coutry_name,
+        countryShort: result.county_abbreviation,
       },
-      result.id
+      result.country_id
     );
   }
   static async deleteById(id) {
