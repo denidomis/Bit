@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { getAllCountries } from "../../utils/api/countriesApi";
+import { getAllCountries } from "/utils/api/countriesApi";
 import { register } from "../../utils/api/registerService";
-import { checkSession } from "../../utils/api/checkSession";
-import { useNavigate } from "react-router-dom";
-
+import { checkSession } from "/utils/api/sessions";
+import { Link, useNavigate } from "react-router-dom";
 export default function RegistrationWindow() {
+  console.log("Komponentas persikrove");
   const [userDetails, setUserDetails] = useState({
     username: "",
     password: "",
@@ -23,7 +23,6 @@ export default function RegistrationWindow() {
     streetNumber: "",
     apartmentNumber: "",
   });
-
   const [countries, setCountries] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
@@ -43,6 +42,7 @@ export default function RegistrationWindow() {
   const sortedCountries = useMemo(() => {
     return countries.sort((a, b) => a.country.localeCompare(b.country));
   }, [countries]);
+  // const [addressDetails, setAddressDetails] = useState({});
 
   function setFieldInUserDetails(e, field) {
     const newObject = { ...userDetails };
@@ -268,6 +268,12 @@ export default function RegistrationWindow() {
               </span>
             </label>
           </div>
+          <Link
+            to="/login"
+            className="block text-blue-600 hover:text-blue-700 hover:underline "
+          >
+            Already have an account?
+          </Link>
           <button
             className="bg-indigo-600 hover:bg-indigo-700 rounded text-white px-6 py-1 mt-4"
             onClick={sendRegistrationDetails}
