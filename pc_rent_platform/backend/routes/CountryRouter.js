@@ -5,6 +5,7 @@ const CountryModel = require("../model/CountryModel");
 router.post("/", async (req, res) => {
   try {
     const { country, countryShort } = req.body;
+    console.log(req.body);
     const newCountry = new CountryModel({ country, countryShort });
     await newCountry.save();
     res.send(newCountry.getInstance());
@@ -21,7 +22,6 @@ router.post("/", async (req, res) => {
     }
   }
 });
-
 router.get("/:id", async (req, res) => {
   const country = await CountryModel.findById(req.params.id);
   res.send(country.getInstance());
@@ -29,13 +29,11 @@ router.get("/:id", async (req, res) => {
 
 router.get("/", async (req, res) => {
   const allCountriesWithoutId = await CountryModel.findAll();
-  // console.log(allCountriesWithoutId);
   const allCountries = allCountriesWithoutId.map((value) =>
     value.getInstance()
   );
   res.send(allCountries);
 });
-
 router.delete("/:id", async (req, res) => {
   try {
     const result = await CountryModel.deleteById(req.params.id);

@@ -1,91 +1,59 @@
 const express = require("express");
 const router = express.Router();
-const PCModel = require("../model/PcModel");
+const PcModel = require("../model/PcModel");
 
 router.post("/", async (req, res) => {
   try {
     const {
-      computer_owner,
+      pc_name,
       processor,
       graphics_card,
       ram_type,
       ram_speed,
       amount_of_ram,
-      rental_history,
       computer_type,
+      pc_image,
     } = req.body;
-    const newPC = new PCModel({
-      computer_owner,
+
+    const newPc = new PcModel({
+      computer_owner: req.session.user.id,
+      pc_name,
       processor,
       graphics_card,
       ram_type,
       ram_speed,
       amount_of_ram,
-      rental_history,
       computer_type,
+      pc_image,
     });
-    await newPC.save();
-    res.send(newPC.getInstance());
+    await newPc.save();
+
+    res.status(201).json({
+      message: "PC saveed to the database sucessfully",
+      newPc: newPc.getInstance(),
+      status: true,
+    });
   } catch (err) {
-    console.error(err);
-    if (err.errno === 1062)
-      res
-        .status(400)
-        .send(
-          "Iterpimas negalimas, Įrašas yra pasikartojantis - duomenų bazė to neleidžia"
-        );
-    else {
-      res.status(500).send("Serverio klaida");
-    }
+    return res
+      .status(500)
+      .json({ message: "Internal server error", status: false });
   }
+});
+
+router.get("/", async (req, res) => {
+  const allPcs = await PcModel.findAll();
+  res.status(200).json(allPcs.map((pcObj) => pcObj.getInstance()));
 });
 
 router.get("/:id", async (req, res) => {
-  const pc = await PCModel.findById(req.params.id);
-  res.send(pc.getInstance());
-});
-
-// router.get("/", async (req, res) => {
-//   const allPCWithoutId = await PCModel.findAll();
-//   const allPC = allPCWithoutId.map((value) => value.getInstance());
-//   res.send(allPC);
-// });
-
-router.delete("/:id", async (req, res) => {
   try {
-    const result = await PCModel.deleteById(req.params.id);
-    res.send("Irasas buvo sekmingai pasalintas");
+    const pc = await PcModel.findById(req.params.id);
+    if (!pc)
+      return res.status(404).json({ message: "pc not found", status: false });
+    return res.status(200).json({ pc: pc.getInstance(), status: true });
   } catch (err) {
-    if (err.message === "not found")
-      res
-        .status(404)
-        .send("Irasas su id = " + req.params.id + " buvo nerastas");
-    else res.status(500).send("Server error!");
+    return res.status(400).json({ message: "Bad Id", status: false });
   }
-});
-
-router.put("/:id", async (req, res) => {
-  const {
-    computer_owner,
-    processor,
-    graphics_card,
-    ram_type,
-    ram_speed,
-    amount_of_ram,
-    rental_history,
-    computer_type,
-  } = req.body;
-  const pcObj = await PCModel.findById(req.params.id);
-  if (computer_owner) pcObj.computer_owner = computer_owner;
-  if (processor) pcObj.processor = processor;
-  if (graphics_card) pcObj.graphics_card = graphics_card;
-  if (ram_type) pcObj.ram_type = ram_type;
-  if (ram_speed) pcObj.ram_speed = ram_speed;
-  if (amount_of_ram) pcObj.amount_of_ram = amount_of_ram;
-  if (rental_history) pcObj.rental_history = rental_history;
-  if (computer_type) pcObj.computer_type = computer_type;
-  await pcObj.update();
-  res.send(pcObj.getInstance());
 });
 
 module.exports = router;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { checkSession, logout } from "../../utils/api/sessions.js";
+import { checkSession, logout } from "/utils/api/sessions";
 import { Link, useNavigate } from "react-router-dom";
+import { getAllPcs } from "../../utils/api/pcService";
 
 function AuthButtons() {
   return (
@@ -21,55 +22,49 @@ function AuthButtons() {
   );
 }
 
-function PcPost() {
+function PcPost({ pc }) {
   return (
     <div className="flex justify-center items-center">
       <div className="bg-white min-h-[300px] min-w-[100px] max-w-[250px]">
         <div className="img">
-          <img src="https://placehold.co/400x300" className="w-full" />
+          <img src={`/pc-images/${pc.pc_image}`} className="w-full" />
         </div>
         <div className="details p-4 w-fit mx-auto">
-          <a href="/pc1">
+          <a href={`/pc/${pc.id}`}>
             <h3 className="title text-xl mb-2 border-b-4 border-blue-500 w-fit pr-4">
-              Lorem ipsum dolor sit
+              {pc.pc_name}
             </h3>
           </a>
           <div className="text-xs">
-            <div className="flex flex-wrap gap-x-4 mb-1">
-              <span className="inline-block w-1/3 font-bold">
-                Specifikacija:
-              </span>
-              <span>Specifikacijos reikšmė</span>
+            <div className="flex flex-wrap gap-x-4 mb-1 items-center">
+              <span className="inline-block w-1/3 font-bold">Processor:</span>
+              <span>{pc.processor}</span>
             </div>
-            <div className="flex flex-wrap gap-x-4 mb-1">
+            <div className="flex flex-wrap gap-x-4 mb-1 items-center">
               <span className="inline-block w-1/3 font-bold">
-                Specifikacija:
+                Graphics card:
               </span>
-              <span>Specifikacijos reikšmė</span>
+              <span>{pc.graphics_card}</span>
             </div>
-            <div className="flex flex-wrap gap-x-4 mb-1">
-              <span className="inline-block w-1/3 font-bold">
-                Specifikacija:
-              </span>
-              <span>Specifikacijos reikšmė</span>
+            <div className="flex flex-wrap gap-x-4 mb-1 items-center">
+              <span className="inline-block w-1/3 font-bold">Ram type:</span>
+              <span>{pc.ram_type}</span>
             </div>
-            <div className="flex flex-wrap gap-x-4 mb-1">
-              <span className="inline-block w-1/3 font-bold">
-                Specifikacija:
-              </span>
-              <span>Specifikacijos reikšmė</span>
+            <div className="flex flex-wrap gap-x-4 mb-1 items-center">
+              <span className="inline-block w-1/3 font-bold">Ram speed:</span>
+              <span>{pc.ram_speed}</span>
             </div>
-            <div className="flex flex-wrap gap-x-4 mb-1">
+            <div className="flex flex-wrap gap-x-4 mb-1 items-center">
               <span className="inline-block w-1/3 font-bold">
-                Specifikacija:
+                Amount of ram:
               </span>
-              <span>Specifikacijos reikšmė</span>
+              <span>{pc.amount_of_ram}</span>
             </div>
-            <div className="flex flex-wrap gap-x-4 mb-1">
+            <div className="flex flex-wrap gap-x-4 mb-1 items-center">
               <span className="inline-block w-1/3 font-bold">
-                Specifikacija:
+                Computer type;:
               </span>
-              <span>Specifikacijos reikšmė</span>
+              <span>{pc.computer_type}</span>
             </div>
           </div>
         </div>
@@ -79,6 +74,7 @@ function PcPost() {
 }
 
 export default function Main() {
+  const [pcList, setPcList] = useState([]);
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
@@ -87,6 +83,10 @@ export default function Main() {
       // if (!data.isLoggedIn) {
       // 	navigate("/login");
       // }
+    });
+    getAllPcs((allPcs) => {
+      setPcList(allPcs);
+      console.log(allPcs);
     });
   }, [navigate]);
   function logOut() {
@@ -119,15 +119,9 @@ export default function Main() {
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-          <PcPost />
-          <PcPost />
-          <PcPost />
-          <PcPost />
-          <PcPost />
-          <PcPost />
-          <PcPost />
-          <PcPost />
-          <PcPost />
+          {pcList.map((pc) => (
+            <PcPost pc={pc} key={pc.id} />
+          ))}
         </div>
       </div>
     </div>

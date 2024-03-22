@@ -50,10 +50,16 @@ export default function RegistrationWindow() {
     setUserDetails(newObject);
   }
 
-  function sendRegistrationDetails() {
+  function sendRegistrationDetails(e) {
+    e.preventDefault();
     const registrationDetails = { ...userDetails, ...addressDetails };
-    register(registrationDetails);
-    console.log(registrationDetails);
+    register(registrationDetails),
+      (resp) => {
+        if (resp.status) navigate("/");
+        else {
+          alert(resp.message);
+        }
+      };
   }
   return (
     <div className="bg-slate-300 w-[100vw] h-[100vh] flex justify-center items-center auth-bg">
@@ -276,7 +282,7 @@ export default function RegistrationWindow() {
           </Link>
           <button
             className="bg-indigo-600 hover:bg-indigo-700 rounded text-white px-6 py-1 mt-4"
-            onClick={sendRegistrationDetails}
+            onClick={(e) => sendRegistrationDetails(e)}
           >
             Register
           </button>

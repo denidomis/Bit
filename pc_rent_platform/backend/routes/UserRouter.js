@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../model/UserModel");
 const Address = require("../model/AddressModel");
 const security = require("../utils/security");
-
+let currentAddressId;
 router.post("/register", async (req, res) => {
   try {
     const {
@@ -33,6 +33,7 @@ router.post("/register", async (req, res) => {
       apartmentNumber,
     });
     await newAddress.save();
+    currentAddressId = newAddress.id;
 
     const salt = security.generateSalt();
     const hashedPassword = security.hashPassword(password, salt);
@@ -45,6 +46,7 @@ router.post("/register", async (req, res) => {
       phone,
       addressId: newAddress.id,
     });
+
     await newUser.save();
     // 3. Užregistruoti vartotojo sesiją
     req.session.user = {
@@ -55,17 +57,24 @@ router.post("/register", async (req, res) => {
 
     req.session.isLoggedIn = true;
 
+    currentAddressId = undefined;
     res.status(201).send({
       user: newUser.getInstance(),
       address: newAddress.getInstance(),
+      status: true,
     });
   } catch (err) {
     console.error(err);
-    // Address.deleteById(currentAddressId);
+    if (currentAddressId) {
+      await Address.deleteById(currentAddressId);
+      currentAddressId = undefined;
+    }
     if (err.errno === 1062) {
-      res.status(400).json({ message: "Duomenys yra neunikalūs" });
+      res
+        .status(400)
+        .json({ message: "Duomenys yra neunikalūs", status: false });
     } else {
-      res.status(500).json({ message: "Serverio klaida" });
+      res.status(500).json({ message: "Serverio klaida", status: false });
     }
   }
 });
@@ -114,6 +123,7 @@ router.post("/login", async (req, res) => {
 });
 
 // Log out route
+
 router.get("/logout", async (req, res) => {
   if (req.session.isLoggedIn) {
     req.session.destroy();
@@ -131,7 +141,7 @@ router.get("/logout", async (req, res) => {
 router.get("/check-session", (req, res) => {
   if (req.session.isLoggedIn)
     return res.status(200).json({ isLoggedIn: req.session.isLoggedIn });
-  return res.redirect("/register");
+  return res.status(200).json({ isLoggedIn: false });
 });
 
 module.exports = router;
