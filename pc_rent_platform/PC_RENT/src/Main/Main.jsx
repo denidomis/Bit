@@ -36,7 +36,7 @@ function PcPost({ pc }) {
       <div className="bg-white min-h-[300px] min-w-[100px] max-w-[250px]">
         <div className="img">
           <a
-            // href={`/delete/${pc.id}`}
+            // href={`/${pc.id}`}
             className="cursor-pointer absolute w-7 h-7 bg-black rounded-xl flex items-center justify-center"
           >
             <svg
@@ -123,12 +123,21 @@ export default function Main() {
         {!isLoggedIn && <AuthButtons />}
         {isLoggedIn && (
           <div className="flex justify-between">
-            <Link
-              to="/add-new-pc"
-              className="px-4 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded mx-2"
-            >
-              Pridėti nuomos skelbimą
-            </Link>
+            <div>
+              <Link
+                to="/add-new-pc"
+                className="px-4 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded mx-2"
+              >
+                Pridėti nuomos skelbimą
+              </Link>
+              <Link
+                to="my-computers"
+                className="px-4 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded mx-2"
+              >
+                Pridėti kompiuteriai
+              </Link>
+            </div>
+
             <button
               className="px-4 py-1 bg-red-600 hover:bg-red-700 text-white rounded mx-2"
               onClick={logOut}

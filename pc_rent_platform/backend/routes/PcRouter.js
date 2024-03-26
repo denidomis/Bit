@@ -3,7 +3,6 @@ const router = express.Router();
 const PcModel = require("../model/PcModel");
 const PcImageModel = require("../model/PcImageModel");
 const upload = require("../utils/multerConfig");
-const { redirect } = require("react-router-dom");
 
 router.post("/", upload.array("files", 2), async (req, res) => {
   try {
@@ -83,14 +82,13 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// router.get("/delete/:id", async (req, res) => {
+// router.get("/:id", async (req, res) => {
 //   try {
 //     const pc = await PcModel.findById(req.params.id);
 //     if (!pc)
 //       return res.status(404).json({ message: "pc not found", status: false });
 //     await PcImageModel.deleteByPcId(pc.id);
 //     await PcModel.deleteById(pc.id);
-//     redirect("/");
 //     return res.status(200).json({ message: "pc deleted", status: true });
 //   } catch (err) {
 //     console.log(err);
@@ -98,11 +96,20 @@ router.get("/:id", async (req, res) => {
 //   }
 // });
 
-router.get("/my-pcs", async (req, res) => {
-  //prisijungusio vartotojo kompiuteriai grazinami
-  // 1. patikrinti ar vartotojas prisijunges
-  // 2. gauti prisijungusio vartotojo ID
-  // 3. Su modeliu PcModel gauti visus kompiuterius pagal vartotojo ID  |  SELECT * from pcs WHERE owner_id = userId
+router.get("/my-computers", async (req, res) => {
+  const allPcsWithoutImages = await PcModel.findAllAdded();
+  const startTime = Date.now();
+  const allPcsWithImages = await Promise.all(
+    allPcsWithoutImages.map(async (pcModel) => {
+      const pcImages = await PcImageModel.getByPcId(pcModel.id); //2 nuotraukos
+      return { ...pcModel.getInstance(), images: pcImages };
+    })
+  );
+  const endTime = Date.now();
+  console.log(endTime - startTime);
+
+  console.log(allPcsWithImages);
+  res.status(200).json(allPcsWithImages);
 });
 
 module.exports = router;
