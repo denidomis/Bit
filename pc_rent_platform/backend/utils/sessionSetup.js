@@ -20,7 +20,7 @@ module.exports = (app) => {
       saveUninitialized: false,
       store: sessionStore,
       cookie: {
-        expires: 1000 * 60 * 60,
+        expires: 1000 * 60 * 60 * 24,
       },
     })
   );

@@ -13,42 +13,62 @@ export default function AddPcForm() {
   const ramAmountInputRef = useRef(null);
   const computerTypeInputRef = useRef(null);
   const pcNameInputRef = useRef(null);
-  const fileInputRef = useRef(null);
+  const pcImagesInputRef = useRef(null);
 
   useEffect(() => {
+    console.log("Suveike useEffect");
     cpuInputRef.current.focus();
-    cpuInputRef.current.addEventListener("keydown", (e) => {
+
+    const focusGPU = (e) => {
       if (e.key === "Enter") {
         gpuInputRef.current.focus();
+        console.log("Suveike event listeneris");
       }
-    });
+    };
+
+    const element = cpuInputRef.current;
+
+    element.addEventListener("keydown", focusGPU);
+
+    // Cleanup funkcija yra skirta pašalinti dublikuotiems event listeneriams (del strict mode)
+    return () => {
+      element.removeEventListener("keydown", focusGPU);
+    };
   }, []);
 
   function registerNewPc(e) {
     e.preventDefault();
     if (e.pageX === 0 && e.pageY === 0) return;
-    const selectedFile = fileInputRef.current.files[0].name;
-    const newPcObject = {
-      pc_name: pcNameInputRef.current.value,
-      processor: cpuInputRef.current.value,
-      graphics_card: gpuInputRef.current.value,
-      ram_type: ramTypeInputRef.current.value,
-      ram_speed: ramSpeedInputRef.current.value + " MHz",
-      amount_of_ram: ramAmountInputRef.current.value + " GB",
-      computer_type: computerTypeInputRef.current.value,
-      pc_image: selectedFile,
-    };
+    const formData = new FormData();
+    formData.append("pc_name", pcNameInputRef.current.value);
+    formData.append("processor", cpuInputRef.current.value);
+    formData.append("graphics_card", gpuInputRef.current.value);
+    formData.append("ram_type", ramTypeInputRef.current.value);
+    formData.append("ram_speed", ramSpeedInputRef.current.value);
+    formData.append("amount_of_ram", ramAmountInputRef.current.value);
+    formData.append("computer_type", computerTypeInputRef.current.value);
 
-    console.log(newPcObject);
-    savePc(newPcObject, (response) => {
-      if (response.status) {
-        fileInputRef.current.files[0].mv("/pc-images/");
-        navigate("/");
-      } else {
+    const files = pcImagesInputRef.current.files;
+    for (let i = 0; i < files.length; i++) formData.append("files", files[i]);
+
+    savePc(formData, (response) => {
+      if (response.status) navigate("/");
+      else {
         alert("Pridejimas prie duomenu bazes buvo nesekmingas");
       }
     });
   }
+
+  // pc_name,
+  // computer_owner,
+  // processor,
+  // graphics_card,
+  // ram_type,
+  // ram_speed,
+  // amount_of_ram,
+  // computer_type,
+  // pc_image
+
   return (
     <div className="bg-slate-300 w-[100vw] h-[100vh] flex justify-center items-center auth-bg">
       <div className="w-4/5 min-h-[400px] max-w-[1000px] bg-blue-200 bg-opacity-80 p-4 rounded-md">
@@ -153,10 +173,16 @@ export default function AddPcForm() {
             <label>
               <span className="w-1/5 inline-block select-none">PC Image</span>
               <input
-                ref={fileInputRef}
                 type="file"
-                accept="image/*"
-                className="outline-none border w-4/5 px-2 py-1 rounded-md"
+                accept=".jpg,.png"
+                multiple
+                ref={pcImagesInputRef}
+                onChange={(e) => {
+                  if (e.target.files.length > 2) {
+                    alert("Maximum files chosen: 2");
+                    e.target.value = "";
+                  }
+                }}
               />
             </label>
           </div>

@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const PcModel = require("../model/PcModel");
+const PcImageModel = require("../model/PcImageModel");
+const upload = require("../utils/multerConfig");
+const { redirect } = require("react-router-dom");
 
-router.post("/", async (req, res) => {
+router.post("/", upload.array("files", 2), async (req, res) => {
   try {
     const {
       pc_name,
@@ -12,7 +15,6 @@ router.post("/", async (req, res) => {
       ram_speed,
       amount_of_ram,
       computer_type,
-      pc_image,
     } = req.body;
 
     const newPc = new PcModel({
@@ -24,13 +26,20 @@ router.post("/", async (req, res) => {
       ram_speed,
       amount_of_ram,
       computer_type,
-      pc_image,
     });
     await newPc.save();
 
+    const allPcImageModels = req.files.map(
+      (file) => new PcImageModel({ uri: file.path, pcId: newPc.id })
+    );
+    const allPcImageSavePromises = allPcImageModels.map((model) =>
+      model.save()
+    );
+    await Promise.all(allPcImageSavePromises);
     res.status(201).json({
-      message: "PC saveed to the database sucessfully",
+      message: "PC saved to the database sucessfully",
       newPc: newPc.getInstance(),
+      pcImages: allPcImageModels.map((model) => model.getInstance()),
       status: true,
     });
   } catch (err) {
@@ -41,8 +50,19 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const allPcs = await PcModel.findAll();
-  res.status(200).json(allPcs.map((pcObj) => pcObj.getInstance()));
+  const allPcsWithoutImages = await PcModel.findAll();
+  const startTime = Date.now();
+  const allPcsWithImages = await Promise.all(
+    allPcsWithoutImages.map(async (pcModel) => {
+      const pcImages = await PcImageModel.getByPcId(pcModel.id); //2 nuotraukos
+      return { ...pcModel.getInstance(), images: pcImages };
+    })
+  );
+  const endTime = Date.now();
+  console.log(endTime - startTime);
+
+  console.log(allPcsWithImages);
+  res.status(200).json(allPcsWithImages);
 });
 
 router.get("/:id", async (req, res) => {
@@ -50,10 +70,39 @@ router.get("/:id", async (req, res) => {
     const pc = await PcModel.findById(req.params.id);
     if (!pc)
       return res.status(404).json({ message: "pc not found", status: false });
-    return res.status(200).json({ pc: pc.getInstance(), status: true });
+    const pcImages = await PcImageModel.getByPcId(pc.id);
+
+    return res.status(200).json({
+      pc: pc.getInstance(),
+      pcImages: pcImages.map((pcImage) => pcImage.getInstance()),
+      status: true,
+    });
   } catch (err) {
+    console.log(err);
     return res.status(400).json({ message: "Bad Id", status: false });
   }
+});
+
+// router.get("/delete/:id", async (req, res) => {
+//   try {
+//     const pc = await PcModel.findById(req.params.id);
+//     if (!pc)
+//       return res.status(404).json({ message: "pc not found", status: false });
+//     await PcImageModel.deleteByPcId(pc.id);
+//     await PcModel.deleteById(pc.id);
+//     redirect("/");
+//     return res.status(200).json({ message: "pc deleted", status: true });
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(400).json({ message: "Bad Id", status: false });
+//   }
+// });
+
+router.get("/my-pcs", async (req, res) => {
+  //prisijungusio vartotojo kompiuteriai grazinami
+  // 1. patikrinti ar vartotojas prisijunges
+  // 2. gauti prisijungusio vartotojo ID
+  // 3. Su modeliu PcModel gauti visus kompiuterius pagal vartotojo ID  |  SELECT * from pcs WHERE owner_id = userId
 });
 
 module.exports = router;

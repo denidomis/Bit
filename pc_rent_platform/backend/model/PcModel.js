@@ -10,7 +10,6 @@ module.exports = class PC {
   ram_speed;
   amount_of_ram;
   computer_type;
-  pc_image;
 
   constructor(
     {
@@ -22,7 +21,6 @@ module.exports = class PC {
       ram_speed,
       amount_of_ram,
       computer_type,
-      pc_image,
     },
     id = null
   ) {
@@ -35,7 +33,6 @@ module.exports = class PC {
     this.ram_speed = ram_speed;
     this.amount_of_ram = amount_of_ram;
     this.computer_type = computer_type;
-    this.pc_image = pc_image;
   }
 
   async update() {
@@ -48,8 +45,7 @@ module.exports = class PC {
       ram_type = ?,
       ram_speed = ?,
       amount_of_ram = ?,
-      computer_type = ?,
-      pc_image =? 
+      computer_type = ?
       WHERE id = ?`,
       [
         this.pc_name,
@@ -60,7 +56,6 @@ module.exports = class PC {
         this.ram_speed,
         this.amount_of_ram,
         this.computer_type,
-        this.pc_image,
         this.#id,
       ]
     );
@@ -81,10 +76,9 @@ module.exports = class PC {
         ram_type,
         ram_speed,
         amount_of_ram,
-        computer_type,
-        pc_image
+        computer_type
         ) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?);`,
       [
         this.pc_name,
         this.computer_owner,
@@ -94,7 +88,6 @@ module.exports = class PC {
         this.ram_speed,
         this.amount_of_ram,
         this.computer_type,
-        this.pc_image,
       ]
     );
     this.#id = result[0].insertId;
@@ -115,7 +108,6 @@ module.exports = class PC {
             ram_speed: pc_for_rentObj.ram_speed,
             amount_of_ram: pc_for_rentObj.amount_of_ram,
             computer_type: pc_for_rentObj.computer_type,
-            pc_image: pc_for_rentObj.pc_image,
           },
           pc_for_rentObj.id
         )
@@ -124,11 +116,12 @@ module.exports = class PC {
     return result;
   }
 
+  static async findByOwnerId(id) {}
   static async findById(id) {
     const results = await executeQuery(`SELECT * FROM pc_for_rent WHERE id=?`, [
       id,
     ]);
-    const pc_for_rent = results[0];
+    const pc_for_rent = results[0][0];
     return new PC(
       {
         pc_name: pc_for_rent.pc_name,
@@ -139,7 +132,6 @@ module.exports = class PC {
         ram_speed: pc_for_rent.ram_speed,
         amount_of_ram: pc_for_rent.amount_of_ram,
         computer_type: pc_for_rent.computer_type,
-        pc_image: pc_for_rent.pc_image,
       },
       pc_for_rent.id
     );
