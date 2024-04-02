@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../model/UserModel");
-const Address = require("../model/AddressModel");
+// const User = require("../model/UserModel");
+// const Address = require("../model/AddressModel");
+const db = require("../models");
+const Address = db.Address;
+const User = db.User;
 const security = require("../utils/security");
 let currentAddressId;
 router.post("/register", async (req, res) => {
@@ -22,7 +25,18 @@ router.post("/register", async (req, res) => {
       apartmentNumber,
     } = req.body;
 
-    const newAddress = new Address({
+    // const newAddress = new Address({
+    //   country,
+    //   county,
+    //   municipality,
+    //   zipCode,
+    //   city,
+    //   street,
+    //   streetNumber,
+    //   apartmentNumber,
+    // });
+    // await newAddress.save();
+    const newAddress = await Address.create({
       country,
       county,
       municipality,
@@ -32,22 +46,29 @@ router.post("/register", async (req, res) => {
       streetNumber,
       apartmentNumber,
     });
-    await newAddress.save();
-    currentAddressId = newAddress.id;
+    currentAddressId = newAddress.toJSON().id;
 
     const salt = security.generateSalt();
     const hashedPassword = security.hashPassword(password, salt);
-    const newUser = new User({
+    // const newUser = new User({
+    // 	username,
+    // 	passEncoded: hashedPassword,
+    // 	salt,
+    // 	email,
+    // 	birthDate,
+    // 	phone,
+    // 	addressId: newAddress.id,
+    // });
+
+    // await newUser.save();
+    const newUser = await User.create({
       username,
       passEncoded: hashedPassword,
-      salt,
       email,
       birthDate,
       phone,
-      addressId: newAddress.id,
+      salt,
     });
-
-    await newUser.save();
     // 3. Užregistruoti vartotojo sesiją
     req.session.user = {
       username: newUser.username,
@@ -59,8 +80,8 @@ router.post("/register", async (req, res) => {
 
     currentAddressId = undefined;
     res.status(201).send({
-      user: newUser.getInstance(),
-      address: newAddress.getInstance(),
+      user: newUser,
+      address: newAddress,
       status: true,
     });
   } catch (err) {

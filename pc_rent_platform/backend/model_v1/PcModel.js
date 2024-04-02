@@ -1,4 +1,5 @@
 const executeQuery = require("../mysql");
+const joinPcs = require("../utils/pcMapper");
 
 module.exports = class PC {
   #id;
@@ -94,9 +95,32 @@ module.exports = class PC {
     return result;
   }
 
+  static async findAllWithImages() {
+    const [results] = await executeQuery(
+      "SELECT pc_for_rent.*, pc_images.id AS image_id, pc_images.uri AS image_uri FROM pc_for_rent LEFT JOIN pc_images ON pc_for_rent.id = pc_images.pc_id"
+    );
+    const allPcsWithoutImages = results.map(
+      (row) =>
+        new PC(
+          {
+            computer_owner: row.computer_owner,
+            processor: row.processor,
+            graphics_card: row.graphics_card,
+            ram_type: row.ram_type,
+            ram_speed: row.ram_speed,
+            amount_of_ram: row.amount_of_ram,
+            computer_type: row.computer_type,
+            pc_name: row.pc_name,
+          },
+          row.id
+        )
+    );
+    return joinPcs(allPcsWithoutImages, results);
+  }
+
   static async findAll() {
     const results = await executeQuery(`SELECT * FROM pc_for_rent`);
-    const result = results[0].map(
+    return results[0].map(
       (pc_for_rentObj) =>
         new PC(
           {
@@ -112,8 +136,6 @@ module.exports = class PC {
           pc_for_rentObj.id
         )
     );
-
-    return result;
   }
 
   static async findByOwnerId(id) {}

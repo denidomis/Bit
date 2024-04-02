@@ -10,19 +10,19 @@ module.exports = class Country {
     this.countryShort = countryShort;
   }
 
-  // async update() {
-  //   const result = await executeQuery(
-  //     `UPDATE countries SET salies_pavadinimas = ?, salies_trumpinys = ? WHERE id = ?`,
-  //     [this.country, this.countryShort, this.#id]
-  //   );
-  //   return result;
-  // }
+  async update() {
+    const result = await executeQuery(
+      `UPDATE countries SET salies_pavadinimas = ?, salies_trumpinys = ? WHERE id = ?`,
+      [this.country, this.countryShort, this.#id]
+    );
+    return result;
+  }
   get id() {
     return this.#id;
   }
   async save() {
     const result = await executeQuery(
-      `INSERT INTO countries (country_name, county_abbreviation) VALUES (?, ?);`,
+      `INSERT INTO countries (salies_pavadinimas, salies_trumpinys) VALUES (?, ?);`,
       [this.country, this.countryShort]
     );
     this.#id = result[0].insertId;
@@ -30,15 +30,14 @@ module.exports = class Country {
   static async findAll() {
     // const result = await executeQuery(`SELECT * FROM countries`)[0]
     const results = await executeQuery(`SELECT * FROM countries`);
-    // console.log(results);
     const result = results[0].map(
       (countryObj) =>
         new Country(
           {
-            country: countryObj.country_name,
-            countryShort: countryObj.county_abbreviation,
+            country: countryObj.salies_pavadinimas,
+            countryShort: countryObj.salies_trumpinys,
           },
-          countryObj.country_id
+          countryObj.id
         )
     );
 
@@ -51,10 +50,10 @@ module.exports = class Country {
     const result = results[0][0];
     return new Country(
       {
-        country: result.coutry_name,
-        countryShort: result.county_abbreviation,
+        country: result.salies_pavadinimas,
+        countryShort: result.salies_trumpinys,
       },
-      result.country_id
+      result.id
     );
   }
   static async deleteById(id) {

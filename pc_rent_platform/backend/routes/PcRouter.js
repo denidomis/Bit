@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const PcModel = require("../model/PcModel");
-const PcImageModel = require("../model/PcImageModel");
+const PcModel = require("../model_v1/PcModel");
+const PcImageModel = require("../model_v1/PcImageModel");
 const upload = require("../utils/multerConfig");
 
 router.post("/", upload.array("files", 2), async (req, res) => {
