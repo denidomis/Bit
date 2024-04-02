@@ -11,3 +11,4 @@ node_modules
 dist
 24-01-24/secure_info
 .env
+.gitignore

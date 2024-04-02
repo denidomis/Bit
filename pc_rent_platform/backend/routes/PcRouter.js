@@ -49,17 +49,19 @@ router.post("/", upload.array("files", 2), async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const allPcsWithImages = await PcModel.findAllWithImages();
-  res.status(200).json(allPcsWithImages.map((pc) => pc.getInstance()));
-});
+  const allPcsWithoutImages = await PcModel.findAll();
+  const startTime = Date.now();
+  const allPcsWithImages = await Promise.all(
+    allPcsWithoutImages.map(async (pcModel) => {
+      const pcImages = await PcImageModel.getByPcId(pcModel.id); //2 nuotraukos
+      return { ...pcModel.getInstance(), images: pcImages };
+    })
+  );
+  const endTime = Date.now();
+  console.log(endTime - startTime);
 
-router.get("/my-pcs", async (req, res) => {
-  if (!req.session.isLoggedIn)
-    return res.status(403).json({ message: "Unauthorized", status: false });
-  const allPcs = await PcModel.findAllByOwnerIdWithImages(req.session.user.id);
-  return res
-    .status(200)
-    .json({ allPcs: allPcs.map((pc) => pc.getInstance()), status: true });
+  console.log(allPcsWithImages);
+  res.status(200).json(allPcsWithImages);
 });
 
 router.get("/:id", async (req, res) => {
@@ -78,6 +80,36 @@ router.get("/:id", async (req, res) => {
     console.log(err);
     return res.status(400).json({ message: "Bad Id", status: false });
   }
+});
+
+// router.get("/:id", async (req, res) => {
+//   try {
+//     const pc = await PcModel.findById(req.params.id);
+//     if (!pc)
+//       return res.status(404).json({ message: "pc not found", status: false });
+//     await PcImageModel.deleteByPcId(pc.id);
+//     await PcModel.deleteById(pc.id);
+//     return res.status(200).json({ message: "pc deleted", status: true });
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(400).json({ message: "Bad Id", status: false });
+//   }
+// });
+
+router.get("/my-computers", async (req, res) => {
+  const allPcsWithoutImages = await PcModel.findAllAdded();
+  const startTime = Date.now();
+  const allPcsWithImages = await Promise.all(
+    allPcsWithoutImages.map(async (pcModel) => {
+      const pcImages = await PcImageModel.getByPcId(pcModel.id); //2 nuotraukos
+      return { ...pcModel.getInstance(), images: pcImages };
+    })
+  );
+  const endTime = Date.now();
+  console.log(endTime - startTime);
+
+  console.log(allPcsWithImages);
+  res.status(200).json(allPcsWithImages);
 });
 
 module.exports = router;

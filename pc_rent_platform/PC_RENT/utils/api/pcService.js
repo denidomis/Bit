@@ -20,9 +20,3 @@ export async function getById(id, callback) {
   console.log(response);
   callback(response);
 }
-
-export async function getMyPcs(callback) {
-  const promise = await fetch("/server/api/pc/my-pcs");
-  const response = await promise.json();
-  callback(response);
-}
