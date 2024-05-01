@@ -114,7 +114,9 @@ router.post("/login", async (req, res) => {
         status: false,
       });
     console.log(username, password);
-    const existingUser = await User.findByUsername(username);
+    const existingUser = await User.findOne({
+      where: { username: `${username}` },
+    });
     if (!existingUser)
       return res.status(404).json({
         message: "Vartotojas tokiu pavadinmu buvo nerastas",
