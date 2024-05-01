@@ -3,8 +3,8 @@ const router = express.Router();
 // const User = require("../model/UserModel");
 // const Address = require("../model/AddressModel");
 const db = require("../models");
-const Address = db.Address;
-const User = db.User;
+const Address = db.sequelize.models.address2s;
+const User = db.sequelize.models.users2s;
 const security = require("../utils/security");
 let currentAddressId;
 router.post("/register", async (req, res) => {
@@ -25,6 +25,7 @@ router.post("/register", async (req, res) => {
       apartmentNumber,
     } = req.body;
 
+    // console.log(db);
     // const newAddress = new Address({
     //   country,
     //   county,
@@ -35,7 +36,8 @@ router.post("/register", async (req, res) => {
     //   streetNumber,
     //   apartmentNumber,
     // });
-    // await newAddress.save();
+    // // await newAddress.save();
+    // console.log(db.users2s);
     const newAddress = await Address.create({
       country,
       county,
@@ -61,6 +63,7 @@ router.post("/register", async (req, res) => {
     // });
 
     // await newUser.save();
+
     const newUser = await User.create({
       username,
       passEncoded: hashedPassword,
@@ -69,6 +72,7 @@ router.post("/register", async (req, res) => {
       phone,
       salt,
     });
+
     // 3. Užregistruoti vartotojo sesiją
     req.session.user = {
       username: newUser.username,
@@ -109,6 +113,7 @@ router.post("/login", async (req, res) => {
         message: "Prašome pateikti pilną prisijungimo informaciją",
         status: false,
       });
+    console.log(username, password);
     const existingUser = await User.findByUsername(username);
     if (!existingUser)
       return res.status(404).json({

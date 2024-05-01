@@ -1,5 +1,4 @@
 export async function register(registerData, callback) {
-  console.log(registerData);
   const promise = await fetch("/server/api/user/register", {
     method: "post",
     headers: {

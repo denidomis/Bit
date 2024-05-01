@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 // const CountryModel = require("../model/CountryModel");
 const db = require("../models");
-const CountryModel = db.Country;
+const CountryModel = db.country2s;
 
 router.post("/", async (req, res) => {
   try {
@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
     res.send(newCountry.toJSON());
   } catch (err) {
     console.error(err);
-    if (err.original.errno === 1062)
+    if (err.original.error === 1062)
       res
         .status(400)
         .send(
@@ -43,6 +43,8 @@ router.get("/", async (req, res) => {
   // const allCountries = allCountriesWithoutId.map((value) =>
   // 	value.getInstance()
   // );
+  // console.log(db);
+  // console.log(CountryModel);
   const allCountries = await CountryModel.findAll();
   res.send(allCountries);
 });

@@ -28,6 +28,7 @@ export default function RegistrationWindow() {
   useEffect(() => {
     getAllCountries((data) => {
       setCountries(data);
+      console.log(data);
     });
 
     checkSession((data) => {
@@ -40,8 +41,10 @@ export default function RegistrationWindow() {
   }, [navigate]);
 
   const sortedCountries = useMemo(() => {
-    return countries.sort((a, b) => a.country.localeCompare(b.country));
+    console.log(countries);
+    return countries.sort((a, b) => a.countryName.localeCompare(b.countryName));
   }, [countries]);
+
   // const [addressDetails, setAddressDetails] = useState({});
 
   function setFieldInUserDetails(e, field) {
@@ -143,9 +146,9 @@ export default function RegistrationWindow() {
                   })
                 }
               >
-                {sortedCountries.map((country) => (
-                  <option key={`country-${country.id}`}>
-                    {country.country}
+                {sortedCountries.map((countries) => (
+                  <option key={`countries-${countries.id}`}>
+                    {countries.countryName}
                   </option>
                 ))}
               </select>

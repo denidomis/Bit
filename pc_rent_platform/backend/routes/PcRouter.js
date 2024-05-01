@@ -58,9 +58,9 @@ router.get("/", async (req, res) => {
     })
   );
   const endTime = Date.now();
-  console.log(endTime - startTime);
+  // console.log(endTime - startTime);
 
-  console.log(allPcsWithImages);
+  // console.log(allPcsWithImages);
   res.status(200).json(allPcsWithImages);
 });
 
@@ -106,9 +106,9 @@ router.get("/my-computers", async (req, res) => {
     })
   );
   const endTime = Date.now();
-  console.log(endTime - startTime);
+  // console.log(endTime - startTime);
 
-  console.log(allPcsWithImages);
+  // console.log(allPcsWithImages);
   res.status(200).json(allPcsWithImages);
 });
 

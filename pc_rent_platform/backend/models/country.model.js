@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Country = sequelize.define(
-    "Country",
+    "country2s",
     {
       countryName: {
         type: DataTypes.STRING,
@@ -17,6 +17,6 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
-  Country.sync({ alter: true });
+  Country.sync();
   return Country;
 };

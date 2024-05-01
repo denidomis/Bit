@@ -14,14 +14,14 @@ const db = {};
 // 	`mysql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:3306/${process.env.DB_DATABASE}`
 // );
 const sequelize = new Sequelize(
-	process.env.DB_DATABASE,
-	process.env.DB_USER,
-	process.env.DB_PASSWORD,
-	{
-		host: process.env.DB_HOST,
-		dialect:
-			"mysql" /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */,
-	}
+  process.env.DB_DATABASE,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
+    host: process.env.DB_HOST,
+    dialect:
+      "mysql" /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */,
+  }
 );
 // if (config.use_env_variable) {
 // 	sequelize = new Sequelize(process.env[config.use_env_variable], config);
@@ -30,26 +30,26 @@ const sequelize = new Sequelize(
 // }
 
 fs.readdirSync(__dirname)
-	.filter((file) => {
-		return (
-			file.indexOf(".") !== 0 &&
-			file !== basename &&
-			file.slice(-3) === ".js" &&
-			file.indexOf(".test.js") === -1
-		);
-	})
-	.forEach((file) => {
-		const model = require(path.join(__dirname, file))(
-			sequelize,
-			Sequelize.DataTypes
-		);
-		db[model.name] = model;
-	});
+  .filter((file) => {
+    return (
+      file.indexOf(".") !== 0 &&
+      file !== basename &&
+      file.slice(-3) === ".js" &&
+      file.indexOf(".test.js") === -1
+    );
+  })
+  .forEach((file) => {
+    const model = require(path.join(__dirname, file))(
+      sequelize,
+      Sequelize.DataTypes
+    );
+    db[model.name] = model;
+  });
 
 Object.keys(db).forEach((modelName) => {
-	if (db[modelName].associate) {
-		db[modelName].associate(db);
-	}
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
 });
 
 db.sequelize = sequelize;
